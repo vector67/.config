@@ -1,0 +1,9 @@
+zed/.tmp*
+zed/embeddings/
+
+zsh/.zcompdump
+zsh/.zsh_history
+zsh/.zsh_sessions/
+
+github-copilot/**
+iterm2/
