@@ -1,5 +1,6 @@
 zed/.tmp*
 zed/embeddings/
+gh/*
 
 zsh/.zcompdump
 zsh/.zsh_history
