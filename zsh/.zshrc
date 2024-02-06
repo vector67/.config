@@ -133,14 +133,14 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-alias loadnpm20='export PATH="$PATH:/Users/ETRNJ73/.nvm/versions/node/v20.2.0/bin"'
-alias loadnpm16='export PATH="$PATH:/Users/ETRNJ73/.nvm/versions/node/v16.14.2/bin"'
+alias loadnpm20='export PATH="$PATH:~/.nvm/versions/node/v20.2.0/bin"'
+alias loadnpm16='export PATH="$PATH:~/.nvm/versions/node/v16.14.2/bin"'
 alias npm='unalias npm && loadnpm20 && npm '
 
 # PATH variables
 export PATH="/usr/local/Cellar/ruby/3.2.2_1/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.2.0/bin:$PATH"
-export PATH="/Users/ETRNJ73/Library/Python/3.11/bin:$PATH"
+export PATH="~/Library/Python/3.11/bin:$PATH"
 
 # LS
 alias ll='ls -l'
