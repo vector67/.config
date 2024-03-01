@@ -151,6 +151,7 @@ source $ZDOTDIR/completion.zsh
 fpath=($ZDOTDIR/prompt $fpath)
 autoload -Uz prompt.zsh; prompt.zsh
 
+
 setopt AUTO_PUSHD           # Push the current directory visited on the stack.
 setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
 setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd.
@@ -158,15 +159,25 @@ alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 bindkey -v
+bindkey '^R' history-incremental-search-backward
+
 export KEYTIMEOUT=1
 
 source $ZDOTDIR/cursor_mode.zsh
+source $ZDOTDIR/git_aliases.zsh
 
 # Python stuff
-alias pv='source .venv/bin/activate'
+alias pv='source venv/bin/activate'
 
 # Convenience aliases for rc files
 alias reload='source ~/.config/zsh/.zshrc'
 
 alias editrc='vim ~/.config/zsh/.zshrc'
 alias editvimrc='vim ~/.vimrc'
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+# bun completions
+[ -s "/Users/etrnj73/.bun/_bun" ] && source "/Users/etrnj73/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
