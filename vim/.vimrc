@@ -13,6 +13,7 @@ Plug 'github/copilot.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'preservim/nerdcommenter'
 Plug 'vim-autoformat/vim-autoformat'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 let g:molokai_original = 1
 let g:rehash256 = 1
@@ -26,6 +27,10 @@ set clipboard=unnamed
 set foldmethod=marker
 set foldmarker={{{,}}}
 
+set ignorecase
+set incsearch
+set hlsearch
+
 nnoremap ª <C-a>
 nnoremap º <C-x>
 
@@ -38,3 +43,4 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 set ttimeoutlen=100
 
 "noremap <expr> gq 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*/target/*
