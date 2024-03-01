@@ -1,0 +1,71 @@
+{
+    "description": "Swaps to dvorak when typing on the Internal keyboard, and swap to normal US when typing on external.",
+    "manipulators": [
+        {
+            "conditions": [
+                {
+                    "input_sources": [
+                        {
+                            "input_source_id": "com.apple.keylayout.Dvorak",
+                            "language": "en"
+                        }
+                    ],
+                    "type": "input_source_if"
+                },
+                {
+                    "identifiers": [
+                        {
+                            "is_built_in_keyboard": false
+                        }
+                    ],
+                    "type": "device_if"
+                }
+            ],
+            "from": {
+                "any": "key_code"
+            },
+            "to": [
+                {
+                    "select_input_source": {
+                        "input_source_id": "com.apple.keylayout.US",
+                        "language": "en"
+                    }
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "conditions": [
+                {
+                    "input_sources": [
+                        {
+                            "input_source_id": "com.apple.keylayout.US",
+                            "language": "en"
+                        }
+                    ],
+                    "type": "input_source_if"
+                },
+                {
+                    "identifiers": [
+                        {
+                            "is_built_in_keyboard": true
+                        }
+                    ],
+                    "type": "device_if"
+                }
+            ],
+            "from": {
+                "any": "key_code"
+            },
+            "to": [
+                {
+                    "select_input_source": {
+                        "input_source_id": "com.apple.keylayout.Dvorak",
+                        "language": "en"
+                    }
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}
