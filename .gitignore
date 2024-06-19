@@ -10,3 +10,7 @@ github-copilot/**
 iterm2/
 
 cache/
+local/share/nvim/plugged/
+local/share/nvim/telescope_history
+local/share/nvim/.netrwhist
+karabiner/automatic_backups/

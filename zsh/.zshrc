@@ -85,11 +85,11 @@ zstyle ':omz:plugins:nvm' lazy yes
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -138,8 +138,8 @@ alias loadnpm16='export PATH="$PATH:~/.nvm/versions/node/v16.14.2/bin"'
 alias npm='unalias npm && loadnpm20 && npm '
 
 # PATH variables
-export PATH="/usr/local/Cellar/ruby/3.2.2_1/bin:$PATH"
-export PATH="/usr/local/lib/ruby/gems/3.2.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH=`gem environment gemdir`/bin:$PATH
 export PATH="~/Library/Python/3.11/bin:$PATH"
 
 # LS
@@ -168,12 +168,13 @@ source $ZDOTDIR/git_aliases.zsh
 
 # Python stuff
 alias pv='source venv/bin/activate'
+alias createVenv='python3 -m venv venv'
 
 # Convenience aliases for rc files
 alias reload='source ~/.config/zsh/.zshrc'
 
-alias editrc='vim ~/.config/zsh/.zshrc'
-alias editvimrc='vim ~/.vimrc'
+alias editrc='nvim ~/.config/zsh/.zshrc'
+alias editvimrc='nvim ~/.vimrc'
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
@@ -181,3 +182,16 @@ eval "$(jenv init -)"
 [ -s "/Users/etrnj73/.bun/_bun" ] && source "/Users/etrnj73/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+function cdr() {
+    if [[ $1 == "-l" ]]
+    then
+        ls ~/repositories/;
+        return;
+    fi
+    cd ~/repositories/$1/ || return;
+}
+function cdl() {
+	cd $1;
+	ls;
+}
