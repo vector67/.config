@@ -87,8 +87,10 @@ zstyle ':omz:plugins:nvm' lazy yes
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
+  export VISUAL='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='nvim'
+  export VISUAL='nvim'
 fi
 
 # Compilation flags
@@ -120,14 +122,14 @@ alias cdmast="cd ~/personal/masters/masters-2021-paper/"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/ETRNJ73/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/ETRNJ73/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/ETRNJ73/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/ETRNJ73/miniconda3/bin:$PATH"
+        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -175,6 +177,8 @@ alias reload='source ~/.config/zsh/.zshrc'
 
 alias editrc='nvim ~/.config/zsh/.zshrc'
 alias editvimrc='nvim ~/.vimrc'
+alias nvimconfig='nvim ~/.config/nvim'
+
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
@@ -195,3 +199,8 @@ function cdl() {
 	cd $1;
 	ls;
 }
+export SPARK_HOME=/Users/etrnj73/spark
+# export PATH="/opt/homebrew/anaconda3/bin:$PATH"  # commented out by conda initialize
+export CC=/opt/homebrew/opt/llvm/bin/clang
+
+test -e /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh && source /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh || true
