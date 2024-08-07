@@ -2,6 +2,7 @@ zed/.tmp*
 zed/embeddings/
 gh/*
 
+zsh/.iterm2/**
 zsh/.zcompdump
 zsh/.zsh_history
 zsh/.zsh_sessions/
@@ -10,7 +11,7 @@ github-copilot/**
 iterm2/
 
 cache/
-local/share/nvim/plugged/
+local/share/nvim/**
 local/share/nvim/telescope_history
 local/share/nvim/.netrwhist
 karabiner/automatic_backups/
