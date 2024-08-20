@@ -4,6 +4,7 @@ local opt = vim.opt
 
 opt.relativenumber = true
 opt.number = true
+opt.linebreak = true
 
 opt.tabstop = 4
 opt.shiftwidth = 4
@@ -27,3 +28,6 @@ opt.splitright = true
 opt.splitbelow = true
 
 opt.autowrite = true
+
+vim.cmd("autocmd FocusLost * nested silent! wall")
+

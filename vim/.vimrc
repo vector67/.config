@@ -19,7 +19,6 @@ nnoremap º <C-x>
 
 autocmd FileType python map <buffer> <F9> :w<CR>:ter python3 %<CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:ter python3 %<CR>
-autocmd FocusLost * nested silent! wall
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -33,6 +32,4 @@ lua require('config')
 
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
 
-tnoremap <S-Esc> <C-\><C-n><C-w>w
-nnoremap <S-Esc> <C-w>w
 

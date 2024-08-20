@@ -178,6 +178,7 @@ alias reload='source ~/.config/zsh/.zshrc'
 alias editrc='nvim ~/.config/zsh/.zshrc'
 alias editvimrc='nvim ~/.vimrc'
 alias nvimconfig='nvim ~/.config/nvim'
+alias chpc='ssh jrussell@lengau.chpc.ac.za'
 
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
@@ -204,3 +205,6 @@ export SPARK_HOME=/Users/etrnj73/spark
 export CC=/opt/homebrew/opt/llvm/bin/clang
 
 test -e /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh && source /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh || true
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export PATH="$HOME/sam/aws-sam-cli:$PATH"
+

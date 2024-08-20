@@ -10,7 +10,8 @@ keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
 keymap.set("n", "<leader>re", ":source ~/.vimrc<cr>", {desc = "Reload vimrc"})
 keymap.set("n", "<leader>/", ":noh<cr>", {desc = "Clear current search"})
-keymap.set("n", "<leader>s", ":wa<cr>", {desc = "Save entire file"})
+keymap.set("n", "<leader>ss", ":wa<cr>", {desc = "Save entire file"})
+keymap.set("n", "<leader>sp", ":setlocal spell spelllang=en_us<cr>", {desc = "Enable spell checking locally"})
 keymap.set("n", "<leader>ya", "ggvG$y", {desc = "Yank entire file"})
 keymap.set("n", "<leader>bn", ":bnext<cr>", {desc = "Next buffer"})
 keymap.set("n", "<leader>bp", ":bprevious<cr>", {desc = "Previous buffer"})
@@ -24,6 +25,8 @@ keymap.set("n", "<localleader>if", "i<C-r>=expand('%:t:r')<cr><Esc>", {desc = "I
 keymap.set("n", "<localleader>id", "i<C-r>=strftime('%Y-%m-%d')<cr><Esc>", {desc = "Insert current date"})
 keymap.set("i", "<c-l>", "<C-r>=strftime('%Y-%m-%d')<cr>", {desc = "Insert current date"})
 
+keymap.set("t", "<S-Esc>", "<C-\\><C-n><C-w>w")
+keymap.set("n", "<S-Esc>", "<C-w>w")
 keymap.set("n", "<c-h>", "<c-w>h")
 keymap.set("n", "<c-j>", "<c-w>j")
 keymap.set("n", "<c-k>", "<c-w>k")
@@ -32,3 +35,4 @@ keymap.set("n", "<c-s>", ":wa<cr>")
 
 
 keymap.set("v", "<C-r>", "hy:%s/<C-r>h//gc<left><left><left>", {desc = "Replace"})
+
