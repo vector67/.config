@@ -71,6 +71,8 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 zstyle ':omz:plugins:nvm' lazy yes
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
 #plugins=(
 #	git
 #	)
@@ -178,7 +180,7 @@ alias reload='source ~/.config/zsh/.zshrc'
 alias editrc='nvim ~/.config/zsh/.zshrc'
 alias editvimrc='nvim ~/.vimrc'
 alias nvimconfig='nvim ~/.config/nvim'
-alias chpc='ssh jrussell@lengau.chpc.ac.za'
+alias chpc='pass show -c lengau.chpc.ac.za; ssh jrussell@lengau.chpc.ac.za'
 
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
@@ -208,3 +210,4 @@ test -e /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh && source /User
 export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 export PATH="$HOME/sam/aws-sam-cli:$PATH"
 
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
