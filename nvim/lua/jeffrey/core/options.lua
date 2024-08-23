@@ -6,8 +6,8 @@ opt.relativenumber = true
 opt.number = true
 opt.linebreak = true
 
-opt.tabstop = 4
-opt.shiftwidth = 4
+opt.tabstop = 2
+opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 
@@ -31,3 +31,17 @@ opt.autowrite = true
 
 vim.cmd("autocmd FocusLost * nested silent! wall")
 
+-- autosession config
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  pattern = 'NvimTree*',
+  callback = function()
+    local api = require('nvim-tree.api')
+    local view = require('nvim-tree.view')
+
+    if not view.is_visible() then
+      api.tree.open()
+    end
+  end,
+})
