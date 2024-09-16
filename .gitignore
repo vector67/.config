@@ -15,3 +15,5 @@ local/share/nvim/**
 local/share/nvim/telescope_history
 local/share/nvim/.netrwhist
 karabiner/automatic_backups/
+
+**/.DS_STORE

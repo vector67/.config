@@ -17,4 +17,4 @@ alias grs='git remote show'
 alias glo='git log --pretty="oneline"'
 alias glol='git log --graph --oneline --decorate'
 
-alias gvwcp='git add .; git commit -m "`date +%F`";'
+alias gvwcp='git add .; git commit -m "`date +%F`"; gp;'

@@ -3,7 +3,6 @@ vim.g.maplocalleader= ","
 
 local keymap = vim.keymap
 
-
 -- Find stuff
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>" )
 keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
@@ -12,10 +11,10 @@ keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
 
 -- Run stuff
 keymap.set("n", "<leader>re", ":source ~/.vimrc<cr>", {desc = "Reload vimrc"})
-keymap.set("n", "<leader>rmp", ":MarkdownPreview<cr>", {desc = "Run markdwon preview"})
-keymap.set("n", "<leader>rmt", ":MarkdownPreviewToggle<cr>", {desc = "Toggle markdwon preview"})
-keymap.set("n", "<leader>rms", ":MarkdownPreviewStop<cr>", {desc = "Stop markdwon preview"})
-keymap.set("n", "<leader>rmo", ":!pandoc -f markdown -o <C-r>%<C-W>pdf --resource-path=/Users/etrnj73/vimwiki <C-r>%<cr>", {desc = "Stop markdwon preview"})
+keymap.set("n", "<leader>rmp", ":MarkdownPreview<cr>", {desc = "Run markdown preview"})
+keymap.set("n", "<leader>rmt", ":MarkdownPreviewToggle<cr>", {desc = "Toggle markdown preview"})
+keymap.set("n", "<leader>rms", ":MarkdownPreviewStop<cr>", {desc = "Stop markdown preview"})
+keymap.set("n", "<leader>rmo", ":!pandoc -f markdown -o \"<C-r>%<C-W>pdf\" --resource-path=/Users/etrnj73/vimwiki --template=eisvogel \"<C-r>%\"<cr><cr>:!open \"<C-r>%<C-W>pdf\"<cr><cr>", {desc = "Convert current file to pdf"})
 
 
 keymap.set("n", "<leader>/", ":noh<cr>", {desc = "Clear current search"})
