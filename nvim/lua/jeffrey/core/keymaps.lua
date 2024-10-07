@@ -23,7 +23,8 @@ keymap.set("n", "<leader>sp", ":setlocal spell spelllang=en_us<cr>", {desc = "En
 keymap.set("n", "<leader>ya", "ggvG$y", {desc = "Yank entire file"})
 keymap.set("n", "<leader>bn", ":bnext<cr>", {desc = "Next buffer"})
 keymap.set("n", "<leader>bp", ":bprevious<cr>", {desc = "Previous buffer"})
-keymap.set("n", "<leader>bd", ":bdelete<cr>", {desc = "Close the current buffer"})
+keymap.set("n", "<leader>bd", ":bp<cr>:bdelete #<cr>", {desc = "Close the current buffer"})
+keymap.set("n", "<leader>bl", ":buffers<cr>", {desc = "List the current buffers"})
 
 -- Options
 keymap.set("n", "<leader>oace", ":AutoCmpOn<cr>", {desc = "Enable auto complete for the current buffer"})
