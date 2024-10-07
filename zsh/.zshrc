@@ -183,6 +183,7 @@ alias nvimconfig='nvim ~/.config/nvim'
 alias chpc='pass show -c lengau.chpc.ac.za; ssh jrussell@lengau.chpc.ac.za'
 alias masters='nvim  ~/personal/masters/masters-2021-paper/'
 alias masters2='source ~/personal/masters/masters-2021-paper/venv.nosync/bin/activate;jupyter-lab ~/personal/masters/masters-2021-paper/'
+alias mastersActivate='source ~/personal/masters/masters-2021-paper/venv.nosync/bin/activate'
 
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
