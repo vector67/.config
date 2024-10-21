@@ -2,6 +2,8 @@ zed/.tmp*
 zed/embeddings/
 gh/*
 
+tmux/tpm/**
+
 zsh/.iterm2/**
 zsh/.zcompdump
 zsh/.zsh_history
