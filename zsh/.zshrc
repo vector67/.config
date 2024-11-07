@@ -185,8 +185,12 @@ alias masters='nvim  ~/personal/masters/masters-2021-paper/'
 alias masters2='source ~/personal/masters/masters-2021-paper/venv.nosync/bin/activate;jupyter-lab ~/personal/masters/masters-2021-paper/'
 alias mastersActivate='source ~/personal/masters/masters-2021-paper/venv.nosync/bin/activate'
 
+function nr {
+  npm run $1;
+}
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+jenv enable-plugin export
 
 # bun completions
 [ -s "/Users/etrnj73/.bun/_bun" ] && source "/Users/etrnj73/.bun/_bun"
@@ -210,7 +214,6 @@ export SPARK_HOME=/Users/etrnj73/spark
 export CC=/opt/homebrew/opt/llvm/bin/clang
 
 test -e /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh && source /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh || true
-export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 export PATH="$HOME/sam/aws-sam-cli:$PATH"
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
