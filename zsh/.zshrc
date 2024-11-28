@@ -209,6 +209,10 @@ function cdl() {
 	cd $1;
 	ls;
 }
+function chpcCopy() {
+  pass show -c lengau.chpc.ac.za;
+  scp jrussell@scp.chpc.ac.za:/mnt/lustre/users/jrussell/masters-2021-paper/$1 .;
+}
 export SPARK_HOME=/Users/etrnj73/spark
 # export PATH="/opt/homebrew/anaconda3/bin:$PATH"  # commented out by conda initialize
 export CC=/opt/homebrew/opt/llvm/bin/clang
@@ -217,4 +221,5 @@ test -e /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh && source /User
 export PATH="$HOME/sam/aws-sam-cli:$PATH"
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="$HOME/.config/bin:$PATH"
 conda deactivate
