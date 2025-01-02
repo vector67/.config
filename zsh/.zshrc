@@ -222,4 +222,8 @@ export PATH="$HOME/sam/aws-sam-cli:$PATH"
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$HOME/.config/bin:$PATH"
+export PATH=/Users/etrnj73/.cache/rebar3/bin:$PATH
+
 conda deactivate
+
+export ERL_AFLAGS="-kernel shell_history enabled"
