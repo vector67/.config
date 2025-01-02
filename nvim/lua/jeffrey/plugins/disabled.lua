@@ -5,7 +5,9 @@ return {
 --  { "akinsho/bufferline.nvim", enabled = false },
 --  { "loctvl842/monokai-pro.nvim", enabled = false },
 --  { "numToStr/Comment.nvim", enabled = false },
-
+ -- { "williamboman/mason.nvim", enabled = false },
+ -- { "williamboman/mason-lspconfig.nvim", enabled = false },
+ -- { "neovim/nvim-lspconfig", enabled = false },
 --  { "stevearc/dressing.nvim", enabled = false },
 --  { "lukas-reineke/indent-blankline.nvim", enabled = false },
 --  { "nvim-lualine/lualine.nvim", enabled = false },

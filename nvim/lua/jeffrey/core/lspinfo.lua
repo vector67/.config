@@ -2,6 +2,7 @@ local api = vim.api
 local windows = require 'lspconfig.ui.windows'
 local util = require 'lspconfig.util'
 
+
 local error_messages = {
   cmd_not_found = 'Unable to find executable. Please check your path and ensure the server is installed',
   no_filetype_defined = 'No filetypes defined, Please define filetypes in setup()',
@@ -12,6 +13,7 @@ local helptags = {
   [error_messages.no_filetype_defined] = { 'lspconfig-setup' },
   [error_messages.root_dir_not_found] = { 'lspconfig-root-detection' },
 }
+
 
 local function trim_blankspace(cmd)
   local trimmed_cmd = {}
