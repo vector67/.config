@@ -2,6 +2,7 @@ zed/.tmp*
 zed/embeddings/
 gh/*
 
+exercism/**
 tmux/tpm/**
 
 zsh/.iterm2/**
