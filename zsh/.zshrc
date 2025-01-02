@@ -144,7 +144,6 @@ alias npm='unalias npm && loadnpm20 && npm '
 # PATH variables
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH=`gem environment gemdir`/bin:$PATH
-export PATH="~/Library/Python/3.11/bin:$PATH"
 
 # LS
 alias ll='ls -l'
@@ -174,6 +173,7 @@ source $ZDOTDIR/git_aliases.zsh
 alias pv='source venv/bin/activate'
 alias createVenv='python3 -m venv venv'
 
+
 # Convenience aliases for rc files
 alias reload='source ~/.config/zsh/.zshrc'
 alias editconfig='nvim ~/.config/'
@@ -184,14 +184,14 @@ alias nvimconfig='nvim ~/.config/nvim'
 alias chpc='pass show -c lengau.chpc.ac.za; ssh jrussell@lengau.chpc.ac.za'
 alias masters='nvim  ~/personal/masters/masters-2021-paper/'
 alias masters2='source ~/personal/masters/masters-2021-paper/venv.nosync/bin/activate;jupyter-lab ~/personal/masters/masters-2021-paper/'
-alias mastersActivate='source ~/personal/masters/masters-2021-paper/venv.nosync/bin/activate'
+alias mastersActivate='source ~/repositories/masters-2021-paper/venv.nosync/bin/activate'
 
 function nr {
   npm run $1;
 }
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
-# jenv enable-plugin export
+jenv enable-plugin export > /dev/null
 
 # bun completions
 [ -s "/Users/etrnj73/.bun/_bun" ] && source "/Users/etrnj73/.bun/_bun"
@@ -225,6 +225,10 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$HOME/.config/bin:$PATH"
 export PATH=/Users/etrnj73/.cache/rebar3/bin:$PATH
 
-conda deactivate
-
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+if type conda > /dev/null; then
+  conda deactivate
+fi
+
+export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client/lib/pkgconfig"
