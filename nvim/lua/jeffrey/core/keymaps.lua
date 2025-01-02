@@ -3,6 +3,7 @@ vim.g.maplocalleader= ","
 
 local keymap = vim.keymap
 
+keymap.set("n", " ", "za")
 -- Find stuff
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>" )
 keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")

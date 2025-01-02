@@ -3,7 +3,8 @@ return {
     init = function()
       vim.g.vimwiki_list = {{
         syntax = 'markdown', 
-        exts = 'wiki'
+        exts = 'wiki',
       }}
+      vim.g.vimwiki_folding = 'expr'
     end
 }
