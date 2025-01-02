@@ -47,6 +47,9 @@
 $if(CJKmainfont)$
 \PassOptionsToPackage{space}{xeCJK}
 $endif$
+
+\DeclareUnicodeCharacter{2028}{\linebreak} 
+
 %
 \documentclass[
 $if(fontsize)$
