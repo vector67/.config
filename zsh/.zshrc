@@ -176,6 +176,7 @@ alias createVenv='python3 -m venv venv'
 
 # Convenience aliases for rc files
 alias reload='source ~/.config/zsh/.zshrc'
+alias editconfig='nvim ~/.config/'
 
 alias editrc='nvim ~/.config/zsh/.zshrc'
 alias editvimrc='nvim ~/.vimrc'
@@ -190,7 +191,7 @@ function nr {
 }
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
-jenv enable-plugin export
+# jenv enable-plugin export
 
 # bun completions
 [ -s "/Users/etrnj73/.bun/_bun" ] && source "/Users/etrnj73/.bun/_bun"
