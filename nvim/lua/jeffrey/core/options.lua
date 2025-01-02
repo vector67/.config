@@ -29,12 +29,22 @@ opt.splitbelow = true
 
 opt.autowrite = true
 
-vim.cmd("autocmd FocusLost * nested silent! wall")
+-- vim.cmd("autocmd FocusLost * nested silent! wall")
+local agrp = vim.api.nvim_create_augroup
+local acmd = vim.api.nvim_create_autocmd
+
+local _general = agrp("_general", { clear = true })
+acmd({ 'BufLeave', 'FocusLost' }, {
+  pattern = '*',
+  command =  ":wall",
+  group = _general,
+
+})
 
 -- autosession config
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+acmd({ 'BufEnter' }, {
   pattern = 'NvimTree*',
   callback = function()
     local api = require('nvim-tree.api')
@@ -45,3 +55,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     end
   end,
 })
+
+
+-- au BufRead,BufWinEnter,BufNewFile *.{md,mdx,mdown,mkd,mkdn,markdown,mdwn} setlocal syntax=markdown
+
+-- au BufRead,BufWinEnter,BufNewFile *.{md,mdx,mdown,mkd,mkdn,markdown,mdwn}.{des3,des,bf,bfa,aes,idea,cast,rc2,rc4,rc5,desx} setlocal syntax=markdown
