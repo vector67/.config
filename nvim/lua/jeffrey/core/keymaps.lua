@@ -39,8 +39,12 @@ keymap.set("n", "<localleader>if", "i<C-r>=expand('%:t:r')<cr><Esc>", {desc = "I
 keymap.set("n", "<localleader>id", "i<C-r>=strftime('%Y-%m-%d')<cr><Esc>", {desc = "Insert current date"})
 keymap.set("i", "<c-l>", "<C-r>=strftime('%Y-%m-%d')<cr>", {desc = "Insert current date"})
 
+-- iterm2 puts a strange character in when you hit shift escape and that's what this keymap is here for
+keymap.set("t", "", "<C-\\><C-n><C-w>w")
 keymap.set("t", "<S-Esc>", "<C-\\><C-n><C-w>w")
+keymap.set("n", "", "<C-w>w")
 keymap.set("n", "<S-Esc>", "<C-w>w")
+
 keymap.set("n", "<c-h>", "<c-w>h")
 keymap.set("n", "<c-j>", "<c-w>j")
 keymap.set("n", "<c-k>", "<c-w>k")
