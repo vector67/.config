@@ -16,6 +16,8 @@ local/share/nvim/**
 local/share/nvim/.netrwhist
 local/share/nvim/telescope_history
 
+StardewValley/**
+
 tmux/tpm/**
 
 zed/.tmp*
