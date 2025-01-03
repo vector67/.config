@@ -6,3 +6,5 @@ curl -fLo ~/.vim/colors/molokai.vim --create-dirs https://raw.githubusercontent.
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +slient +VimEnter +PlugInstall +qall
 
+(crontab -l 2>/dev/null; cat ~/.config/cron/autosave.cron) | crontab -
+
