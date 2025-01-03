@@ -70,6 +70,7 @@ if ! type "pass" > /dev/null; then
 	  pass \
     tmux \
     neovim
+    ripgrep
 fi
 
 
