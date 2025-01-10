@@ -8,12 +8,18 @@ return {
   config = function()
     local wk = require('which-key')
     wk.add({
-      { "<leader>f", group = "Find"},
-      { "<leader>r", group = "Run"},
       { "<leader>b", group = "Buffers"},
-      { "<leader>o", group = "Options"},
+      { "<leader>e", group = "file Explorer"},
       { "<leader>i", group = "Insert"},
+      { "<leader>f", group = "Find"},
+      { "<leader>m", group = "Maximize/Minimize"},
+      { "<leader>n", group = "Clear search highlights"},
+      { "<leader>o", group = "Options"},
+      { "<leader>r", group = "Run"},
+      { "<leader>s", group = "Splits/spellcheck/save"},
+      { "<leader>t", group = "Tabs"},
       { "<leader>w", group = "Wiki/Session"},
+      { "<leader>y", group = "Yank"},
 
     })
     -- your configuration comes here
