@@ -154,6 +154,9 @@ source $ZDOTDIR/completion.zsh
 fpath=($ZDOTDIR/prompt $fpath)
 autoload -Uz prompt.zsh; prompt.zsh
 
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+
 
 setopt AUTO_PUSHD           # Push the current directory visited on the stack.
 setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
@@ -161,8 +164,6 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-bindkey -v
-bindkey '^R' history-incremental-search-backward
 
 export KEYTIMEOUT=1
 
@@ -177,18 +178,23 @@ alias createVenv='python3 -m venv venv'
 # Convenience aliases for rc files
 alias reload='source ~/.config/zsh/.zshrc'
 alias editconfig='nvim ~/.config/'
-
 alias editrc='nvim ~/.config/zsh/.zshrc'
 alias editvimrc='nvim ~/.vimrc'
 alias nvimconfig='nvim ~/.config/nvim'
+
+# Masters aliases
 alias chpc='pass show -c lengau.chpc.ac.za; ssh jrussell@lengau.chpc.ac.za'
 alias masters='nvim  ~/personal/masters/masters-2021-paper/'
 alias masters2='source ~/personal/masters/masters-2021-paper/venv.nosync/bin/activate;jupyter-lab ~/personal/masters/masters-2021-paper/'
 alias mastersActivate='source ~/repositories/masters-2021-paper/venv.nosync/bin/activate'
 
+# More aliases
 function nr {
   npm run $1;
 }
+alias t='tmux attach-session -t'
+
+# Paths
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 jenv enable-plugin export > /dev/null
