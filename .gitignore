@@ -12,6 +12,7 @@ iterm2/
 
 karabiner/automatic_backups/
 
+local/share/caddy/**
 local/share/nvim/**
 local/share/nvim/.netrwhist
 local/share/nvim/telescope_history
