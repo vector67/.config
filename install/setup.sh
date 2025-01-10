@@ -69,8 +69,11 @@ if ! type "pass" > /dev/null; then
 	  openssl \
 	  pass \
     tmux \
-    neovim
-    ripgrep
+    npm \
+    neovim \
+    ripgrep \
+    pandoc \
+    basictex
 fi
 
 
