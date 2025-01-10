@@ -29,6 +29,11 @@ opt.splitbelow = true
 
 opt.autowrite = true
 
+opt.foldcolumn = "1" -- show foldcolumn
+opt.foldenable = true -- enable fold for nvim-ufo
+opt.foldlevel = 99 -- set high foldlevel for nvim-ufo
+opt.foldlevelstart = 99 -- start with all code unfolded
+
 -- vim.cmd("autocmd FocusLost * nested silent! wall")
 local agrp = vim.api.nvim_create_augroup
 local acmd = vim.api.nvim_create_autocmd
@@ -60,3 +65,4 @@ acmd({ 'BufEnter' }, {
 -- au BufRead,BufWinEnter,BufNewFile *.{md,mdx,mdown,mkd,mkdn,markdown,mdwn} setlocal syntax=markdown
 
 -- au BufRead,BufWinEnter,BufNewFile *.{md,mdx,mdown,mkd,mkdn,markdown,mdwn}.{des3,des,bf,bfa,aes,idea,cast,rc2,rc4,rc5,desx} setlocal syntax=markdown
+--

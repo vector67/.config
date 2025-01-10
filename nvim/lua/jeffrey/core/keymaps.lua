@@ -26,6 +26,8 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "<leader>ss", ":wa<cr>", {desc = "Save entire file"})
 keymap.set("n", "<leader>sp", ":setlocal spell spelllang=en_us<cr>", {desc = "Enable spell checking locally"})
 keymap.set("n", "<leader>ya", "ggvG$y", {desc = "Yank entire file"})
+
+-- Buffers
 keymap.set("n", "<leader>bn", ":bnext<cr>", {desc = "Next buffer"})
 keymap.set("n", "<leader>bp", ":bprevious<cr>", {desc = "Previous buffer"})
 keymap.set("n", "<leader>bd", ":bp<cr>:bdelete #<cr>", {desc = "Close the current buffer"})
@@ -38,7 +40,7 @@ keymap.set("n", "<leader>oacd", ":AutoCmpOff<cr>", {desc = "Disable auto complet
 -- keymap.set("n", "<localleader>O", "O<Esc>0\"_D", {desc = "New line above in normal mode"})
 
 keymap.set("n", "s", ":exec \"normal i\".nr2char(getchar()).\"\\e\"<CR>", {desc = "Insert one character then go back to normal mode"})
-keymap.set("n", "S", ":exec \"normal a\".nr2char(getchar()).\"\\e\"<CR>", {desc = "Insert one character then go back to normal mode"})
+keymap.set("n", "S", ":exec \"normal a\".nr2char(getchar()).\"\\e\"<CR>", {desc = "Append one character then go back to normal mode"})
 keymap.set("n", "<localleader>if", "i<C-r>=expand('%:t:r')<cr><Esc>", {desc = "Insert current file name"})
 keymap.set("n", "<localleader>id", "i<C-r>=strftime('%Y-%m-%d')<cr><Esc>", {desc = "Insert current date"})
 keymap.set("i", "<c-l>", "<C-r>=strftime('%Y-%m-%d')<cr>", {desc = "Insert current date"})
@@ -49,6 +51,7 @@ keymap.set("t", "<S-Esc>", "<C-\\><C-n><C-w>w")
 keymap.set("n", "", "<C-w>w")
 keymap.set("n", "<S-Esc>", "<C-w>w")
 
+-- Navigation
 keymap.set("n", "<c-h>", "<c-w>h")
 keymap.set("n", "<c-j>", "<c-w>j")
 keymap.set("n", "<c-k>", "<c-w>k")
@@ -69,4 +72,6 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 keymap.set("v", "<C-r>", "hy:%s/<C-r>h//gc<left><left><left>", {desc = "Replace"})
+
+keymap.set("o", "iz", ":<c-u>normal! [zV]z<cr>")
 
