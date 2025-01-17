@@ -8,6 +8,7 @@ return {
   config = function()
     local wk = require('which-key')
     wk.add({
+      { "<leader>.", group = "Jump lists"},
       { "<leader>b", group = "Buffers"},
       { "<leader>e", group = "file Explorer"},
       { "<leader>i", group = "Insert"},

@@ -58,6 +58,8 @@ keymap.set("n", "<c-k>", "<c-w>k")
 keymap.set("n", "<c-l>", "<c-w>l")
 keymap.set("n", "<c-s>", ":wa<cr>")
 
+keymap.set("n", "<leader>.n", "<cmd>cn<cr>", { desc = "Next jumplist item"})
+keymap.set("n", "<leader>.p", "<cmd>cp<cr>", { desc = "Previous jumplist item"})
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
