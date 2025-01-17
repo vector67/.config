@@ -13,6 +13,7 @@ keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
 keymap.set("n", "<leader>fe", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "Find references", noremap = true, silent = true })
 keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
+keymap.set("n", "<leader>fo", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true, buffer = bufnr })
 
 -- Run stuff
 keymap.set("n", "<leader>re", ":source ~/.vimrc<cr>", {desc = "Reload vimrc"})
