@@ -111,7 +111,7 @@ fi
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 #alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
 export PATH="/Users/ETRNJ73/repositories/vws2-credentials-loader:$PATH"
-alias cdmast="cd ~/personal/masters/masters-2021-paper/"
+alias cdmast="cd ~/repositories/masters-2021-paper/"
 
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
