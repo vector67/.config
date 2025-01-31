@@ -238,3 +238,5 @@ if type conda > /dev/null; then
 fi
 
 export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client/lib/pkgconfig"
+
+setopt HIST_IGNORE_SPACE
