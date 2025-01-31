@@ -13,7 +13,7 @@ return {
       { "<leader>e", group = "file Explorer"},
       { "<leader>i", group = "Insert"},
       { "<leader>f", group = "Find"},
-      { "<leader>m", group = "Maximize/Minimize"},
+      { "<leader>m", group = "Maximize/Minimize/Format"},
       { "<leader>n", group = "Clear search highlights"},
       { "<leader>o", group = "Options"},
       { "<leader>r", group = "Run"},
