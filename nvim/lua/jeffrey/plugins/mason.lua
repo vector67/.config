@@ -38,6 +38,7 @@ return {
         "prismals",
         "pyright",
       },
+      automatic_installation = true,
     })
 
     mason_tool_installer.setup({
@@ -47,6 +48,7 @@ return {
         "isort", -- python formatter
         "black", -- python formatter
       },
+      automatic_installation = true,
     })
   end,
 }
