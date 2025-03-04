@@ -184,23 +184,30 @@ alias editconfig='nvim ~/.config/'
 alias editrc='nvim ~/.config/zsh/.zshrc'
 alias editvimrc='nvim ~/.vimrc'
 alias nvimconfig='nvim ~/.config/nvim'
+alias sync='cd ~/.config && gpra && cd ~/vimwiki && gpra && cd ~'
 
 # Masters aliases
 alias chpc='pass show -c lengau.chpc.ac.za; ssh jrussell@lengau.chpc.ac.za'
 alias masters='nvim  ~/repositories/masters-2021-paper/'
-alias masters2='source ~/repositories/masters-2021-paper/venv.nosync/bin/activate;jupyter-lab ~/repositories/masters-2021-paper/'
-alias mastersActivate='source ~/repositories/masters-2021-paper/venv.nosync/bin/activate'
+alias masters2='source ~/repositories/masters-2021-paper/runenv/bin/activate;jupyter-lab ~/repositories/masters-2021-paper/'
+alias mastersActivate='source ~/repositories/masters-2021-paper/runenv/bin/activate'
 
 # More aliases
 function nr {
   npm run $1;
 }
-alias t='tmux attach-session -t'
+alias ta='tmux attach-session -t'
+alias tn='tmux new-session -t'
 
 # Paths
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-jenv enable-plugin export > /dev/null
+function jenv() {
+  unset -f jenv
+
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(command jenv init -)"
+  jenv enable-plugin export > /dev/null
+  jenv "$@"
+}
 
 # bun completions
 [ -s "/Users/etrnj73/.bun/_bun" ] && source "/Users/etrnj73/.bun/_bun"
