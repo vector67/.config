@@ -49,6 +49,11 @@ $if(CJKmainfont)$
 $endif$
 
 \DeclareUnicodeCharacter{2028}{\linebreak} 
+\DeclareUnicodeCharacter{2208}{
+  \begin{math} 
+  \in 
+  \end{math}
+} 
 
 %
 \documentclass[
