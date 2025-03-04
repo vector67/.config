@@ -170,6 +170,8 @@ export KEYTIMEOUT=1
 source $ZDOTDIR/cursor_mode.zsh
 source $ZDOTDIR/git_aliases.zsh
 
+# Brew help
+alias br='brew update && brew upgrade && brew doctor && brew cleanup'
 # Python stuff
 alias pv='source venv/bin/activate'
 alias createVenv='python3 -m venv venv'
