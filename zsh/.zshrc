@@ -1,3 +1,4 @@
+# zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -225,14 +226,19 @@ function chpcCopy() {
 export SPARK_HOME=/Users/etrnj73/spark
 # export PATH="/opt/homebrew/anaconda3/bin:$PATH"  # commented out by conda initialize
 export CC=/opt/homebrew/opt/llvm/bin/clang
+export CXX=/opt/homebrew/opt/llvm/bin/clang++
+export LDFLAGS="-L/opt/homebrew/opt/libomp/lib -L/opt/homebrew/opt/llvm/lib -L $(brew --prefix graphviz)/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libomp/include -I/opt/homebrew/opt/llvm/include -I $(brew --prefix graphviz)/include"
 
 test -e /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh && source /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh || true
 export PATH="$HOME/sam/aws-sam-cli:$PATH"
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
 export PATH="$HOME/.config/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH=/Users/etrnj73/.cache/rebar3/bin:$PATH
+
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
@@ -240,6 +246,7 @@ if type conda > /dev/null; then
   conda deactivate
 fi
 
-export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client/lib/pkgconfig"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client/lib/pkgconfig:/opt/homebrew/opt/openblas/lib/pkgconfig"
 
 setopt HIST_IGNORE_SPACE
+# zprof
