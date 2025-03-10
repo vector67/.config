@@ -113,7 +113,7 @@ fi
 #alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
 export PATH="/Users/ETRNJ73/repositories/vws2-credentials-loader:$PATH"
 alias cdmast="cd ~/repositories/masters-2021-paper/"
-
+alias ct="rm *.stdout; rm *.stderr"
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 #iterm2_print_user_vars() {
@@ -256,4 +256,13 @@ fi
 export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client/lib/pkgconfig:/opt/homebrew/opt/openblas/lib/pkgconfig"
 
 setopt HIST_IGNORE_SPACE
+
+# Replace <IRACE_HOME> with the irace installation path
+export IRACE_HOME=/opt/homebrew/lib/R/4.4/site-library/irace
+export PATH=${IRACE_HOME}/bin/:$PATH
+# Tell R where to find R_LIBS_USER
+# Use the following line only if local installation was forced
+
+export R_LIBS=${R_LIBS_USER}:${R_LIBS}
+
 # zprof
