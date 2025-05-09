@@ -15,7 +15,6 @@ opt.autoindent = true
 opt.ignorecase = true
 opt.smartcase = true
 
-
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
@@ -34,33 +33,35 @@ opt.foldenable = true -- enable fold for nvim-ufo
 opt.foldlevel = 99 -- set high foldlevel for nvim-ufo
 opt.foldlevelstart = 99 -- start with all code unfolded
 
+opt.textwidth = 160
+opt.formatoptions:append("t") -- By default auto wrap to "
+
+
 -- vim.cmd("autocmd FocusLost * nested silent! wall")
 local agrp = vim.api.nvim_create_augroup
 local acmd = vim.api.nvim_create_autocmd
 
 local _general = agrp("_general", { clear = true })
-acmd({ 'BufLeave', 'FocusLost' }, {
-  pattern = '*',
-  command =  ":wall",
-  group = _general,
-
+acmd({ "BufLeave", "FocusLost" }, {
+	pattern = "*",
+	command = ":wall",
+	group = _general,
 })
 
 -- autosession config
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-acmd({ 'BufEnter' }, {
-  pattern = 'NvimTree*',
-  callback = function()
-    local api = require('nvim-tree.api')
-    local view = require('nvim-tree.view')
+acmd({ "BufEnter" }, {
+	pattern = "NvimTree*",
+	callback = function()
+		local api = require("nvim-tree.api")
+		local view = require("nvim-tree.view")
 
-    if not view.is_visible() then
-      api.tree.open()
-    end
-  end,
+		if not view.is_visible() then
+			api.tree.open()
+		end
+	end,
 })
-
 
 -- au BufRead,BufWinEnter,BufNewFile *.{md,mdx,mdown,mkd,mkdn,markdown,mdwn} setlocal syntax=markdown
 
