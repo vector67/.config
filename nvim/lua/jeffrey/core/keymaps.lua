@@ -24,6 +24,13 @@ keymap.set(
 	"<cmd>lua vim.diagnostic.open_float()<CR>",
 	{ noremap = true, silent = true, buffer = bufnr }
 )
+keymap.set("n", "gn<space>", "<Plug>VimwikiToggleListItem", { desc = "Toggle list item complete" })
+keymap.set("n", "gl<space>", "<Plug>VimwikiToggleListItem", { desc = "Toggle list item complete" })
+for x = 1, 5, 1 do
+	for y = 1, 5, 1 do
+		keymap.set("n", "glt" .. x .. y, ":VimwikiTable " .. x .. " " .. y .. "<cr>", { desc = "Vim wiki table" })
+	end
+end
 
 -- Run stuff
 keymap.set("n", "<leader>re", ":source ~/.vimrc<cr>", { desc = "Reload vimrc" })
