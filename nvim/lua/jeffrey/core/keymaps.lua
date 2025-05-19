@@ -64,6 +64,7 @@ keymap.set("n", "<leader>bl", ":buffers<cr>", { desc = "List the current buffers
 -- Options
 keymap.set("n", "<leader>oace", ":AutoCmpOn<cr>", { desc = "Enable auto complete for the current buffer" })
 keymap.set("n", "<leader>oacd", ":AutoCmpOff<cr>", { desc = "Disable auto complete for the current buffer" })
+keymap.set("n", "<leader>ost", ":set textwidth=160<cr>", { desc = "Set textwidth to 160" })
 -- keymap.set("n", "<localleader>oo", "o<Esc>0\"_D", {desc = "New line below in normal mode"})
 -- keymap.set("n", "<localleader>O", "O<Esc>0\"_D", {desc = "New line above in normal mode"})
 
