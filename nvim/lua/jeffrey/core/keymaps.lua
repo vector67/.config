@@ -84,6 +84,8 @@ keymap.set(
 )
 keymap.set("n", "<localleader>if", "i<C-r>=expand('%:t:r')<cr><Esc>", { desc = "Insert current file name" })
 keymap.set("n", "<localleader>ii", "i# <C-r>=expand('%:t:r')<cr><cr><cr>", { desc = "Insert vimwiki header" })
+keymap.set("n", "<localleader>il", ":VimwikiGenerateLinks ", { desc = "Generate links to files based on pattern" })
+
 keymap.set("n", "<c-l>", "i<C-r>=strftime('%Y-%m-%d')<cr><Esc>", { desc = "Insert current date" })
 keymap.set("i", "<c-l>", "<C-r>=strftime('%Y-%m-%d')<cr>", { desc = "Insert current date" })
 
