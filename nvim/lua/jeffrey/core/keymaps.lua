@@ -40,19 +40,20 @@ keymap.set("n", "<leader>rms", ":MarkdownPreviewStop<cr>", { desc = "Stop markdo
 keymap.set(
 	"n",
 	"<leader>rmo",
-	':!pandoc -f markdown -o "<C-r>%<C-W>pdf" --resource-path=/Users/etrnj73/vimwiki --template=eisvogel "<C-r>%"<cr><cr>:!open "<C-r>%<C-W>pdf"<cr><cr>',
+	':!pandoc -f markdown -o "<C-r>%<C-W>pdf" --lua-filter ~/.config/local/share/pandoc/filters/highlight.lua --resource-path=~/vimwiki --template=eisvogel "<C-r>%"<cr><cr>:!open "<C-r>%<C-W>pdf"<cr><cr>',
 	{ desc = "Convert current file to pdf" }
 )
 keymap.set(
 	"n",
 	"<leader>rmd",
-	':!pandoc -f markdown -o "<C-r>%<C-W>pdf" --resource-path=/Users/etrnj73/vimwiki --template=eisvogel "<C-r>%"',
+	':!pandoc -f markdown -o "<C-r>%<C-W>pdf" --lua-filter ~/.config/local/share/pandoc/filters/highlight.lua --resource-path=~/vimwiki --template=eisvogel "<C-r>%"',
 	{ desc = "Convert current file to pdf (debug)" }
 )
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "<leader>ss", ":wa<cr>", { desc = "Save entire file" })
 keymap.set("n", "<leader>sp", ":setlocal spell spelllang=en_us<cr>", { desc = "Enable spell checking locally" })
+keymap.set("n", "<leader>sP", ":setlocal nospell<cr>", { desc = "Disable spell checking locally" })
 keymap.set("n", "<leader>st", ":set textwidth=160<cr>", { desc = "Enable textwidth wrapping" }) -- Side note, this shouldn't be necessary, but I can't figure out how to do this any other way
 
 keymap.set("n", "<leader>ya", "ggvG$y", { desc = "Yank entire file" })
