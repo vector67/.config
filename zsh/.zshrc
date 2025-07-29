@@ -243,6 +243,7 @@ export PATH="$HOME/sam/aws-sam-cli:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 export PATH="$HOME/.config/bin:$PATH"
+export PATH="$HOME/.config/local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH=/Users/etrnj73/.cache/rebar3/bin:$PATH
 
@@ -266,3 +267,6 @@ export PATH=${IRACE_HOME}/bin/:$PATH
 export R_LIBS=${R_LIBS_USER}:${R_LIBS}
 
 # zprof
+
+# Created by `pipx` on 2025-07-23 08:21:51
+export PATH="$PATH:/Users/etrnj73/.local/bin"
