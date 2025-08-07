@@ -270,3 +270,7 @@ export R_LIBS=${R_LIBS_USER}:${R_LIBS}
 
 # Created by `pipx` on 2025-07-23 08:21:51
 export PATH="$PATH:/Users/etrnj73/.local/bin"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
