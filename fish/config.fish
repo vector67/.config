@@ -6,3 +6,8 @@ if test -f /Users/ETRNJ73/miniconda3/bin/conda
 end
 # <<< conda initialize <<<
 
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/etrnj73/.lmstudio/bin
+# End of LM Studio CLI section
+
