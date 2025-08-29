@@ -199,6 +199,9 @@ function nr {
 alias ta='tmux attach-session -t'
 alias tn='tmux new-session -t'
 
+alias play='sudo mv ~/personal/important /Applications/Minecraft.app'
+alias unplay='sudo mv /Applications/Minecraft.app/ ~/personal/important'
+
 # Paths
 function jenv() {
   unset -f jenv
