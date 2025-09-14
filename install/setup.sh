@@ -168,6 +168,7 @@ node -v && npm -v
 npm install -g npm@latest
 npm set init-author-name "$name"
 npm set init-author-email "$email"
+npm config set ignore-scripts true
 
 
 printf " 🎆  🎊  🥳  🎉  🎇"
