@@ -202,6 +202,9 @@ alias tn='tmux new-session -t'
 alias play='sudo mv ~/personal/important /Applications/Minecraft.app'
 alias unplay='sudo mv /Applications/Minecraft.app/ ~/personal/important'
 
+alias saveWiki='cd ~/vimwiki; gvwcp; 1'
+alias floating='cd ~/vimwiki; echo "Gzzi" | nvim "For Later.wiki" -s -'
+
 # Paths
 function jenv() {
   unset -f jenv
