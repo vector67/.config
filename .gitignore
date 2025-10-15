@@ -4,6 +4,8 @@ cache/
 
 exercism/**
 
+gcloud/**
+
 gh/*
 
 github-copilot/**
