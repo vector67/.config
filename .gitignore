@@ -17,6 +17,11 @@ local/share/nvim/**
 local/share/nvim/.netrwhist
 local/share/nvim/telescope_history
 
+local/bin/idea
+local/bin/rubymine
+local/bin/pycharm
+local/bin/python*
+
 StardewValley/**
 
 tmux/tpm/**
