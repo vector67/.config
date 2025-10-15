@@ -105,6 +105,7 @@ keymap.set("n", "<c-s>", ":wa<cr>")
 
 keymap.set("n", "<leader>.n", "<cmd>cn<cr>", { desc = "Next jumplist item" })
 keymap.set("n", "<leader>.p", "<cmd>cp<cr>", { desc = "Previous jumplist item" })
+keymap.set("n", "<leader>.o", "vibgx", { desc = "Open next file in brackets with the system default" })
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
