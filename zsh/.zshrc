@@ -205,6 +205,9 @@ alias unplay='sudo mv /Applications/Minecraft.app/ ~/personal/important'
 alias saveWiki='cd ~/vimwiki; gvwcp; 1'
 alias floating='cd ~/vimwiki; echo "Gzzi" | nvim "For Later.wiki" -s -'
 
+# Open the most recent file from downloads in nvim
+alias oD='cd ~/Downloads/;ls -t | head -1 | xargs -o nvim'
+
 # Paths
 function jenv() {
   unset -f jenv
