@@ -111,7 +111,7 @@ fi
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 #alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
-export PATH="/Users/ETRNJ73/repositories/vws2-credentials-loader:$PATH"
+export PATH="~/repositories/vws2-credentials-loader:$PATH"
 alias cdmast="cd ~/repositories/masters-2021-paper/"
 alias ct="rm *.stdout; rm *.stderr"
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -219,7 +219,7 @@ function jenv() {
 }
 
 # bun completions
-[ -s "/Users/etrnj73/.bun/_bun" ] && source "/Users/etrnj73/.bun/_bun"
+[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
@@ -239,14 +239,14 @@ function chpcCopy() {
   pass show -c lengau.chpc.ac.za;
   scp jrussell@scp.chpc.ac.za:/mnt/lustre/users/jrussell/masters-2021-paper/$1 .;
 }
-export SPARK_HOME=/Users/etrnj73/spark
+export SPARK_HOME=~/spark
 # export PATH="/opt/homebrew/anaconda3/bin:$PATH"  # commented out by conda initialize
 export CC=/opt/homebrew/opt/llvm/bin/clang
 export CXX=/opt/homebrew/opt/llvm/bin/clang++
 export LDFLAGS="-L/opt/homebrew/opt/libomp/lib -L/opt/homebrew/opt/llvm/lib -L $(brew --prefix graphviz)/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/libomp/include -I/opt/homebrew/opt/llvm/include -I $(brew --prefix graphviz)/include"
 
-test -e /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh && source /Users/etrnj73/.config/zsh/.iterm2_shell_integration.zsh || true
+test -e ~/.config/zsh/.iterm2_shell_integration.zsh && source ~/.config/zsh/.iterm2_shell_integration.zsh || true
 test -e $HOME/.config/zsh/.zsh_private && source $HOME/.config/zsh/.zsh_private || true
 
 export PATH="$HOME/sam/aws-sam-cli:$PATH"
@@ -256,7 +256,7 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$HOME/.config/bin:$PATH"
 export PATH="$HOME/.config/local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
-export PATH=/Users/etrnj73/.cache/rebar3/bin:$PATH
+export PATH=~/.cache/rebar3/bin:$PATH
 
 
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -280,7 +280,7 @@ export R_LIBS=${R_LIBS_USER}:${R_LIBS}
 # zprof
 
 # Created by `pipx` on 2025-07-23 08:21:51
-export PATH="$PATH:/Users/etrnj73/.local/bin"
+export PATH="$PATH:~/.local/bin"
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
