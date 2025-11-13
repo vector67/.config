@@ -1,0 +1,2 @@
+alias setDNS='curl https://freemyip.com/update?token=<insert_token>&domain=<domain>'
+alias homeServer='ssh -p <port> <username>@<domain>'

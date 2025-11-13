@@ -38,4 +38,6 @@ zed/embeddings/
 zsh/.iterm2/**
 zsh/.zcompdump
 zsh/.zsh_history
+zsh/.zsh_private
 zsh/.zsh_sessions/
+

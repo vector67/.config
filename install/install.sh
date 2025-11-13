@@ -8,3 +8,4 @@ vim +slient +VimEnter +PlugInstall +qall
 
 (crontab -l 2>/dev/null; cat ~/.config/cron/autosave.cron) | crontab -
 
+touch $HOME/.config/zsh/.zsh_private
