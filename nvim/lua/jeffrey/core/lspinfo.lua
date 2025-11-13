@@ -7,7 +7,6 @@ local typescript_setup, typescript = pcall(require, "typescript")
 if not typescript_setup then
 	return
 end
--- require'lspconfig'.pyright.setup{}
 
 local error_messages = {
 	cmd_not_found = "Unable to find executable. Please check your path and ensure the server is installed",

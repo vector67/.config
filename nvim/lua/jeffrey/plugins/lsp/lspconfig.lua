@@ -8,7 +8,6 @@ return {
 	},
 	config = function()
 		-- import lspconfig plugin
-		local lspconfig = require("lspconfig")
 		vim.lsp.config("lua_ls", {
 			settings = {
 				Lua = {
@@ -24,6 +23,44 @@ return {
 				},
 			},
 		})
+
+		local function get_python_path()
+			local venv = vim.fn.getcwd() .. "/.venv/bin/python"
+			if vim.fn.filereadable(venv) == 1 then
+				return venv
+			else
+        venv = vim.fn.getcwd() .. "/venv/bin/python"
+        if vim.fn.filereadable(venv) == 1 then
+          return venv
+        end
+			end
+      return "python" -- fallback
+		end
+
+		-- Register the Pyright server using the new vim.lsp.configs API
+    vim.lsp.config["pyright"] = {
+        cmd = { "pyright-langserver", "--stdio" },
+        filetypes = { "python" },
+        root_markers = {
+          'pyrightconfig.json',
+          'pyproject.toml',
+          'setup.py',
+          'setup.cfg',
+          'requirements.txt',
+          'Pipfile',
+          '.git',
+        },
+        settings = {
+          python = {
+            pythonPath = get_python_path(),
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              typeCheckingMode = "basic",
+            },
+          },
+        },
+		}
 
 		-- import cmp-nvim-lsp plugin
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
