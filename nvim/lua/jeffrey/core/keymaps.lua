@@ -34,6 +34,7 @@ end
 
 -- Run stuff
 keymap.set("n", "<leader>re", ":source ~/.vimrc<cr>", { desc = "Reload vimrc" })
+keymap.set("n", "<leader>rt", ":make test<cr>", { desc = "Run tests" })
 keymap.set("n", "<leader>rmp", ":MarkdownPreview<cr>", { desc = "Run markdown preview" })
 keymap.set("n", "<leader>rmt", ":MarkdownPreviewToggle<cr>", { desc = "Toggle markdown preview" })
 keymap.set("n", "<leader>rms", ":MarkdownPreviewStop<cr>", { desc = "Stop markdown preview" })
@@ -108,6 +109,7 @@ keymap.set("n", "<leader>.p", "<cmd>cp<cr>", { desc = "Previous jumplist item" }
 keymap.set("n", "<leader>.o", "vibgx", { desc = "Open next file in brackets with the system default" })
 
 -- window management
+keymap.set("n", "<leader>sV", "<C-w>v:term<cr>", { desc = "Split window vertically and open terminal" }) -- split window vertically
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
