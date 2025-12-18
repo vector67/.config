@@ -48,6 +48,9 @@ $if(CJKmainfont)$
 \PassOptionsToPackage{space}{xeCJK}
 $endif$
 
+
+\DeclareUnicodeCharacter{2713}{\checkmark} 
+\DeclareUnicodeCharacter{26CC}{X} 
 \DeclareUnicodeCharacter{2028}{\linebreak} 
 \DeclareUnicodeCharacter{2208}{
   \begin{math} 
@@ -84,6 +87,9 @@ $if(background-image)$
 \usebackgroundtemplate{%
   \includegraphics[width=\paperwidth]{$background-image$}%
 }
+% Inculde checkmark 
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
 % In beamer background-image does not work well when other images are used, so this is the workaround
 \pgfdeclareimage[width=\paperwidth,height=\paperheight]{background}{$background-image$}
 \usebackgroundtemplate{\pgfuseimage{background}}
