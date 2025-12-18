@@ -29,37 +29,37 @@ return {
 			if vim.fn.filereadable(venv) == 1 then
 				return venv
 			else
-        venv = vim.fn.getcwd() .. "/venv/bin/python"
-        if vim.fn.filereadable(venv) == 1 then
-          return venv
-        end
+				venv = vim.fn.getcwd() .. "/venv/bin/python"
+				if vim.fn.filereadable(venv) == 1 then
+					return venv
+				end
 			end
-      return "python" -- fallback
+			return "python" -- fallback
 		end
 
 		-- Register the Pyright server using the new vim.lsp.configs API
-    vim.lsp.config["pyright"] = {
-        cmd = { "pyright-langserver", "--stdio" },
-        filetypes = { "python" },
-        root_markers = {
-          'pyrightconfig.json',
-          'pyproject.toml',
-          'setup.py',
-          'setup.cfg',
-          'requirements.txt',
-          'Pipfile',
-          '.git',
-        },
-        settings = {
-          python = {
-            pythonPath = get_python_path(),
-            analysis = {
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-              typeCheckingMode = "basic",
-            },
-          },
-        },
+		vim.lsp.config["pyright"] = {
+			cmd = { "pyright-langserver", "--stdio" },
+			filetypes = { "python" },
+			root_markers = {
+				"pyrightconfig.json",
+				"pyproject.toml",
+				"setup.py",
+				"setup.cfg",
+				"requirements.txt",
+				"Pipfile",
+				".git",
+			},
+			settings = {
+				python = {
+					pythonPath = get_python_path(),
+					analysis = {
+						autoSearchPaths = true,
+						useLibraryCodeForTypes = true,
+						typeCheckingMode = "basic",
+					},
+				},
+			},
 		}
 
 		-- import cmp-nvim-lsp plugin
@@ -78,8 +78,8 @@ return {
 				opts.desc = "Show LSP references"
 				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
-				opts.desc = "Go to declaration"
-				keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+				opts.desc = "Go to definition"
+				keymap.set("n", "gD", vim.lsp.buf.definition, opts) -- go to declaration
 
 				opts.desc = "Show LSP definitions"
 				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
@@ -113,6 +113,18 @@ return {
 
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+				local client = vim.lsp.get_client_by_id(ev.data.client_id)
+				if not client then
+					return
+				end
+
+				-- adjust this name if you use a different python language server
+				if client.name == "pyright" or client.name == "pylsp" or client.name == "python-ls" then
+					local bufnr = ev.buf
+					local setup_pytest_for_buf = require("jeffrey.core.python")
+					setup_pytest_for_buf(bufnr)
+				end
 			end,
 		})
 
