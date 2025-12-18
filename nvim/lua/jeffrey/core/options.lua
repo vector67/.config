@@ -36,7 +36,6 @@ opt.foldlevelstart = 99 -- start with all code unfolded
 opt.textwidth = 160
 opt.formatoptions:append("t") -- By default auto wrap to "
 
-
 -- vim.cmd("autocmd FocusLost * nested silent! wall")
 local agrp = vim.api.nvim_create_augroup
 local acmd = vim.api.nvim_create_autocmd
@@ -63,7 +62,17 @@ acmd({ "BufEnter" }, {
 	end,
 })
 
+acmd({ "FileType" }, {
+	callback = function()
+		if require("nvim-treesitter.parsers").has_parser() then
+			vim.opt.foldmethod = "expr"
+			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+		else
+			vim.opt.foldmethod = "syntax"
+		end
+	end,
+})
+
 -- au BufRead,BufWinEnter,BufNewFile *.{md,mdx,mdown,mkd,mkdn,markdown,mdwn} setlocal syntax=markdown
 
 -- au BufRead,BufWinEnter,BufNewFile *.{md,mdx,mdown,mkd,mkdn,markdown,mdwn}.{des3,des,bf,bfa,aes,idea,cast,rc2,rc4,rc5,desx} setlocal syntax=markdown
---
