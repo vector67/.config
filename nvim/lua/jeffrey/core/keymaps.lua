@@ -53,22 +53,31 @@ keymap.set(
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "<leader>ss", ":wa<cr>", { desc = "Save entire file" })
-keymap.set("n", "<leader>sp", ":setlocal spell spelllang=en_us<cr>", { desc = "Enable spell checking locally" })
-keymap.set("n", "<leader>sP", ":setlocal nospell<cr>", { desc = "Disable spell checking locally" })
-keymap.set("n", "<leader>st", ":set textwidth=160<cr>", { desc = "Enable textwidth wrapping" }) -- Side note, this shouldn't be necessary, but I can't figure out how to do this any other way
 
-keymap.set("n", "<leader>ya", "ggvG$y", { desc = "Yank entire file" })
+-- This is a bit of a weird one because why can't you just set textwidth in the config. The problem is that certain plugins overwrite this configuration on
+-- buffer open for certain file types and I haven't bothered to chase all of them down and tell them not to.
+keymap.set(
+	"n",
+	"<leader>st",
+	":set textwidth=160<cr>gqap",
+	{ desc = "Enable textwidth wrapping and wrap current paragraph" }
+)
+
+keymap.set("n", "<leader>ya", ":%y<cr>", { desc = "Yank entire file" })
 
 -- Buffers
 keymap.set("n", "<leader>bn", ":bnext<cr>", { desc = "Next buffer" })
 keymap.set("n", "<leader>bp", ":bprevious<cr>", { desc = "Previous buffer" })
 keymap.set("n", "<leader>bd", ":bp<cr>:bdelete #<cr>", { desc = "Close the current buffer" })
 keymap.set("n", "<leader>bl", ":buffers<cr>", { desc = "List the current buffers" })
+keymap.set("n", "<leader>bs", "<cmd>Telescope buffers<cr>", { desc = "Search current buffers"})
 
 -- Options
 keymap.set("n", "<leader>oace", ":AutoCmpOn<cr>", { desc = "Enable auto complete for the current buffer" })
 keymap.set("n", "<leader>oacd", ":AutoCmpOff<cr>", { desc = "Disable auto complete for the current buffer" })
 keymap.set("n", "<leader>ost", ":set textwidth=160<cr>", { desc = "Set textwidth to 160" })
+keymap.set("n", "<leader>osp", ":setlocal spell spelllang=en_us<cr>", { desc = "Enable spell checking locally" })
+keymap.set("n", "<leader>osP", ":setlocal nospell<cr>", { desc = "Disable spell checking locally" })
 -- keymap.set("n", "<localleader>oo", "o<Esc>0\"_D", {desc = "New line below in normal mode"})
 -- keymap.set("n", "<localleader>O", "O<Esc>0\"_D", {desc = "New line above in normal mode"})
 
