@@ -95,7 +95,6 @@ echo 'source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substr
 brew install starship
 # shellcheck disable=SC2016
 echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 # shellcheck source=/dev/null
 . "${HOME}/.zshrc"
@@ -113,6 +112,8 @@ git config --global user.email "$email"
 
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global init.defaultBranch main
+cd ~
+git clone git@github.com:vector67/vimwiki.git
 
 
 ## SSH
@@ -179,6 +180,7 @@ git clone git@github.com:vector67/.config.git
 chmod +x .config/install/install.sh
 zsh .config/install/install.sh
 
+brew install pyenv
 brew install jenv
 
 mkdir -p ~/miniconda3
