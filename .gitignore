@@ -4,6 +4,8 @@
 
 cache/
 
+composer/auth.json
+
 configstore/
 
 exercism/**
