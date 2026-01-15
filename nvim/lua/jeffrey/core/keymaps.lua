@@ -70,7 +70,7 @@ keymap.set("n", "<leader>bn", ":bnext<cr>", { desc = "Next buffer" })
 keymap.set("n", "<leader>bp", ":bprevious<cr>", { desc = "Previous buffer" })
 keymap.set("n", "<leader>bd", ":bp<cr>:bdelete #<cr>", { desc = "Close the current buffer" })
 keymap.set("n", "<leader>bl", ":buffers<cr>", { desc = "List the current buffers" })
-keymap.set("n", "<leader>bs", "<cmd>Telescope buffers<cr>", { desc = "Search current buffers"})
+keymap.set("n", "<leader>bs", "<cmd>Telescope buffers<cr>", { desc = "Search current buffers" })
 
 -- Options
 keymap.set("n", "<leader>oace", ":AutoCmpOn<cr>", { desc = "Enable auto complete for the current buffer" })
@@ -118,6 +118,7 @@ keymap.set("n", "<leader>.p", "<cmd>cp<cr>", { desc = "Previous jumplist item" }
 keymap.set("n", "<leader>.o", "vibgx", { desc = "Open next file in brackets with the system default" })
 
 -- window management
+keymap.set("n", "<leader>ssv", ":VimwikiVSplitLink<cr>", { desc = "Split window vertically and open vimwiki link" }) -- split window vertically
 keymap.set("n", "<leader>sV", "<C-w>v:term<cr>", { desc = "Split window vertically and open terminal" }) -- split window vertically
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
