@@ -252,11 +252,12 @@ test -e $HOME/.config/zsh/.zsh_private && source $HOME/.config/zsh/.zsh_private 
 export PATH="$HOME/sam/aws-sam-cli:$PATH"
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="$HOME/.config/bin:$PATH"
 export PATH="$HOME/.config/local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH=~/.cache/rebar3/bin:$PATH
+
 
 
 export ERL_AFLAGS="-kernel shell_history enabled"
