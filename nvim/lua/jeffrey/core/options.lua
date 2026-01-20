@@ -63,13 +63,22 @@ acmd({ "BufEnter" }, {
 })
 
 acmd({ "FileType" }, {
-	callback = function()
-		if require("nvim-treesitter.parsers").has_parser() then
-			vim.opt.foldmethod = "expr"
-			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-		else
-			vim.opt.foldmethod = "syntax"
-		end
+	callback = function(event)
+		-- local ok, nvim_treesitter = pcall(require, "nvim-treesitter")
+		--
+		-- if not ok then
+		-- 	vim.opt.foldmethod = "syntax"
+		-- 	return
+		-- end
+		--
+		-- local parsers = require("nvim-treesitter.parsers")
+		--
+		-- if not parsers[event.match] or not nvim_treesitter.install then
+		-- 	vim.opt.foldmethod = "syntax"
+		-- else
+		-- 	vim.opt.foldmethod = "expr"
+		-- 	vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+		-- end
 	end,
 })
 

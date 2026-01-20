@@ -7,8 +7,33 @@ local keymap = vim.keymap
 keymap.set("n", " ", "za")
 
 -- Find stuff
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
-keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
+local function get_nvim_tree_dir()
+	if vim.bo.filetype ~= "NvimTree" then
+		return nil
+	end
+	local ok, api = pcall(require, "nvim-tree.api")
+	if not ok then
+		return nil
+	end
+	local node = api.tree.get_node_under_cursor()
+	if not node then
+		return nil
+	end
+	if node.type == "directory" then
+		return node.absolute_path
+	else
+		return vim.fn.fnamemodify(node.absolute_path, ":h")
+	end
+end
+
+keymap.set("n", "<leader>ff", function()
+	local dir = get_nvim_tree_dir()
+	require("telescope.builtin").find_files({ cwd = dir })
+end, { desc = "Find files" })
+keymap.set("n", "<leader>fg", function()
+	local dir = get_nvim_tree_dir()
+	require("telescope.builtin").live_grep({ cwd = dir })
+end, { desc = "Live grep" })
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
 keymap.set(
@@ -35,6 +60,56 @@ end
 -- Run stuff
 keymap.set("n", "<leader>re", ":source ~/.vimrc<cr>", { desc = "Reload vimrc" })
 keymap.set("n", "<leader>rt", ":make test<cr>", { desc = "Run tests" })
+keymap.set("n", "<leader>rn", function() require("neotest").run.run() end, { desc = "Run nearest test" })
+keymap.set("n", "<leader>rd", function() require("neotest").run.run({strategy = "dap"}) end, { desc = "Debug nearest test" })
+keymap.set("n", "<leader>rf", function() require("neotest").run.run(vim.fn.expand("%")) end, { desc = "Run file tests" })
+keymap.set("n", "<leader>ro", function()
+	require("neotest").output_panel.toggle()
+end, { desc = "Toggle test output panel" })
+keymap.set("n", "<leader>ypt", function()
+	if vim.bo.filetype ~= "python" then
+		print("This only works for Python files")
+		return
+	end
+	local file = vim.fn.expand("%:.")
+	local test_name = nil
+	local class_name = nil
+	local node = vim.treesitter.get_node()
+	while node do
+		local type = node:type()
+		if type == "function_definition" and not test_name then
+			local name_node = node:field("name")[1]
+			if name_node then
+				test_name = vim.treesitter.get_node_text(name_node, 0)
+			end
+		elseif type == "class_definition" then
+			local name_node = node:field("name")[1]
+			if name_node then
+				class_name = vim.treesitter.get_node_text(name_node, 0)
+			end
+		end
+		node = node:parent()
+	end
+	local cmd = "pytest " .. file
+	if class_name and test_name then
+		cmd = cmd .. "::" .. class_name .. "::" .. test_name
+	elseif test_name then
+		cmd = cmd .. "::" .. test_name
+	end
+	cmd = cmd .. " -vvs --tb=long"
+	vim.fn.setreg("+", cmd)
+	print("Copied: " .. cmd)
+end, { desc = "Yank pytest command for current test" })
+
+-- Debug
+keymap.set("n", "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Toggle breakpoint" })
+keymap.set("n", "<leader>dc", function() require("dap").continue() end, { desc = "Continue/Start debugging" })
+keymap.set("n", "<leader>di", function() require("dap").step_into() end, { desc = "Step into" })
+keymap.set("n", "<leader>do", function() require("dap").step_over() end, { desc = "Step over" })
+keymap.set("n", "<leader>dO", function() require("dap").step_out() end, { desc = "Step out" })
+keymap.set("n", "<leader>dt", function() require("dap").terminate() end, { desc = "Terminate debugging" })
+keymap.set("n", "<leader>du", function() require("dapui").toggle() end, { desc = "Toggle debug UI" })
+
 keymap.set("n", "<leader>rmp", ":MarkdownPreview<cr>", { desc = "Run markdown preview" })
 keymap.set("n", "<leader>rmt", ":MarkdownPreviewToggle<cr>", { desc = "Toggle markdown preview" })
 keymap.set("n", "<leader>rms", ":MarkdownPreviewStop<cr>", { desc = "Stop markdown preview" })
@@ -78,6 +153,10 @@ keymap.set("n", "<leader>oacd", ":AutoCmpOff<cr>", { desc = "Disable auto comple
 keymap.set("n", "<leader>ost", ":set textwidth=160<cr>", { desc = "Set textwidth to 160" })
 keymap.set("n", "<leader>osp", ":setlocal spell spelllang=en_us<cr>", { desc = "Enable spell checking locally" })
 keymap.set("n", "<leader>osP", ":setlocal nospell<cr>", { desc = "Disable spell checking locally" })
+keymap.set("n", "<leader>orw", function()
+	vim.cmd("windo set nowinfixwidth nowinfixheight")
+	vim.cmd("wincmd =")
+end, { desc = "Reset windows and equalize" })
 -- keymap.set("n", "<localleader>oo", "o<Esc>0\"_D", {desc = "New line below in normal mode"})
 -- keymap.set("n", "<localleader>O", "O<Esc>0\"_D", {desc = "New line above in normal mode"})
 
@@ -115,6 +194,38 @@ keymap.set("n", "<c-s>", ":wa<cr>")
 
 keymap.set("n", "<leader>.n", "<cmd>cn<cr>", { desc = "Next jumplist item" })
 keymap.set("n", "<leader>.p", "<cmd>cp<cr>", { desc = "Previous jumplist item" })
+keymap.set("n", "<leader>.t", function()
+	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Next error" })
+keymap.set("n", "<leader>.h", function()
+	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Previous error" })
+keymap.set("n", "<leader>.m", function()
+	local node = vim.treesitter.get_node()
+	while node do
+		local type = node:type()
+		if type:match("function") or type:match("method") then
+			local row = node:start()
+			vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
+			vim.cmd("normal! zt")
+			return
+		end
+		node = node:parent()
+	end
+end, { desc = "Jump to enclosing method" })
+keymap.set("n", "<leader>.c", function()
+	local node = vim.treesitter.get_node()
+	while node do
+		local type = node:type()
+		if type:match("class") then
+			local row = node:start()
+			vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
+			vim.cmd("normal! zt")
+			return
+		end
+		node = node:parent()
+	end
+end, { desc = "Jump to enclosing class" })
 keymap.set("n", "<leader>.o", "vibgx", { desc = "Open next file in brackets with the system default" })
 
 -- window management

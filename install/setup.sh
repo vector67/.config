@@ -194,6 +194,10 @@ rm ~/miniconda3/miniconda.sh
 brew install llvm
 brew install yarn
 
+# Neovim dependencies
+brew install debugpy
+brew install tree-sitter-cli
+
 # cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -
 
 # brew tap homebrew/cask-fonts
