@@ -26,3 +26,19 @@ function gvwcp() {
     echo "'$choice' not 'Y' or 'y'. Exiting..."
   fi
 }
+
+function cpr() {
+  pr="$1"
+  remote="${2:-origin}"
+  branch=$(gh pr view "$pr" --json headRefName -q .headRefName)
+  git fetch "$remote" "$branch"
+  git worktree add "../$branch" "$branch"
+#
+  # Copy key files to new worktree
+  for f in .env .env.local; do
+    [[ -f "$source_dir/$f" ]] && cp "$source_dir/$f" "../$branch/$f"
+  done
+
+  cd "../$branch" || return
+  echo "Switched to new worktree for PR #$pr: $branch"
+}

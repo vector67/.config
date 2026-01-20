@@ -76,7 +76,8 @@ if ! type "pass" > /dev/null; then
     neovim \
     ripgrep \
     pandoc \
-    basictex
+    basictex \
+    gh
 fi
 
 
