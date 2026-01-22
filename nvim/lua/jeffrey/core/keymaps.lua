@@ -185,6 +185,16 @@ keymap.set("t", "<S-Esc>", "<C-\\><C-n><C-w>w")
 keymap.set("n", "", "<C-w>w")
 keymap.set("n", "<S-Esc>", "<C-w>w")
 
+keymap.set("n", "<C-`>", function()
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.bo[buf].buftype == "terminal" then
+			vim.api.nvim_set_current_buf(buf)
+			return
+		end
+	end
+	print("No terminal buffer found")
+end, { desc = "Switch to terminal buffer" })
+
 -- Navigation
 keymap.set("n", "<c-h>", "<c-w>h")
 keymap.set("n", "<c-j>", "<c-w>j")
