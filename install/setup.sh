@@ -77,7 +77,8 @@ if ! type "pass" > /dev/null; then
     ripgrep \
     pandoc \
     basictex \
-    gh
+    gh \
+    direnv
 fi
 
 

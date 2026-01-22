@@ -25,6 +25,7 @@ local/share/caddy/**
 local/share/nvim/**
 local/share/nvim/.netrwhist
 local/share/nvim/telescope_history
+local/share/direnv
 
 local/bin/idea
 local/bin/rubymine
