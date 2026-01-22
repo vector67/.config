@@ -42,3 +42,17 @@ function cpr() {
   cd "../$branch" || return
   echo "Switched to new worktree for PR #$pr: $branch"
 }
+
+function dpr() {
+  current=$(pwd)
+  main_worktree=$(git worktree list | head -1 | awk '{print $1}')
+
+  if [[ "$current" == "$main_worktree" ]]; then
+    echo "Already in main worktree, nothing to remove"
+    return 1
+  fi
+
+  cd "$main_worktree" || return
+  git worktree remove "$current"
+  echo "Removed worktree and returned to $main_worktree"
+}
