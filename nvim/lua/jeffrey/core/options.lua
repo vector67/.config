@@ -16,7 +16,6 @@ opt.ignorecase = true
 opt.smartcase = true
 
 opt.termguicolors = true
-opt.background = "dark"
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 opt.backspace = "indent,eol,start"
@@ -25,6 +24,7 @@ opt.clipboard:append("unnamedplus")
 
 opt.splitright = true
 opt.splitbelow = true
+opt.showtabline = 0 -- never show tab line
 
 opt.autowrite = true
 
