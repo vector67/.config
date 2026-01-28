@@ -16,6 +16,7 @@ alias gr='git remote'
 alias grs='git remote show'
 alias glo='git log --pretty="oneline"'
 alias glol='git log --graph --oneline --decorate'
+alias gmt='git mergetool'
 
 function gvwcp() {
   if read -q "choice?Press Y/y to continue with commit and push with date: "; then
