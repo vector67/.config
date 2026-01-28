@@ -1,5 +1,7 @@
 **/.DS_STORE
 
+cagent/
+
 .claude/settings.local.json
 .copilot/
 
@@ -23,6 +25,7 @@ karabiner/automatic_backups/
 
 local/share/caddy/**
 local/share/nvim/**
+local/share/uv/
 local/share/nvim/.netrwhist
 local/share/nvim/telescope_history
 local/share/direnv
@@ -40,7 +43,7 @@ zed/.tmp*
 zed/embeddings/
 
 zsh/.iterm2/**
-zsh/.zcompdump
+zsh/.zcompdump*
 zsh/.zsh_history
 zsh/.zsh_private
 zsh/.zsh_sessions/
