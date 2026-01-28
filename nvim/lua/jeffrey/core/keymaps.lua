@@ -144,10 +144,12 @@ keymap.set("n", "<leader>ya", ":%y<cr>", { desc = "Yank entire file" })
 keymap.set("n", "<leader>bn", ":bnext<cr>", { desc = "Next buffer" })
 keymap.set("n", "<leader>bp", ":bprevious<cr>", { desc = "Previous buffer" })
 keymap.set("n", "<leader>bd", ":bp<cr>:bdelete #<cr>", { desc = "Close the current buffer" })
+keymap.set("n", "<leader>bD", ":%bd|e#|bd#<cr>", { desc = "Close all other buffers" })
 keymap.set("n", "<leader>bl", ":buffers<cr>", { desc = "List the current buffers" })
 keymap.set("n", "<leader>bs", "<cmd>Telescope buffers<cr>", { desc = "Search current buffers" })
 
 -- Options
+keymap.set("n", "<leader>ocs", "<cmd>Telescope colorscheme enable_preview=true<cr>", { desc = "Select colorscheme" })
 keymap.set("n", "<leader>oace", ":AutoCmpOn<cr>", { desc = "Enable auto complete for the current buffer" })
 keymap.set("n", "<leader>oacd", ":AutoCmpOff<cr>", { desc = "Disable auto complete for the current buffer" })
 keymap.set("n", "<leader>ost", ":set textwidth=160<cr>", { desc = "Set textwidth to 160" })
