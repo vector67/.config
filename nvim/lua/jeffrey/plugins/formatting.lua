@@ -4,6 +4,13 @@ return {
 	config = function()
 		local conform = require("conform")
 
+		-- Check if ruff.toml exists in project root
+		local function has_ruff_config()
+			local root = vim.fn.getcwd()
+			return vim.fn.filereadable(root .. "/ruff.toml") == 1
+				or vim.fn.filereadable(root .. "/pyproject.toml") == 1
+		end
+
 		conform.setup({
 			formatters_by_ft = {
 				javascript = { "prettier" },
@@ -19,8 +26,19 @@ return {
 				graphql = { "prettier" },
 				liquid = { "prettier" },
 				lua = { "stylua" },
-				python = { "isort", "black" },
+				python = { "ruff_format" },
 			},
+			format_on_save = function(bufnr)
+				local bufname = vim.api.nvim_buf_get_name(bufnr)
+				-- Only format Python files on save if ruff.toml exists
+				if bufname:match("%.py$") then
+					if has_ruff_config() then
+						return { timeout_ms = 1000, lsp_fallback = false }
+					end
+					return false
+				end
+				return false
+			end,
 		})
 
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
