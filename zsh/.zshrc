@@ -174,8 +174,13 @@ source $ZDOTDIR/git_aliases.zsh
 # Brew help
 alias br='brew update && brew upgrade && brew doctor && brew cleanup'
 # Python stuff
-alias pv='source venv/bin/activate'
+alias pv='source .venv/bin/activate'
 alias createVenv='python3 -m venv venv'
+function just() {
+  [[ ! -f .venv/bin/activate ]] && uv sync
+  [[ -f .venv/bin/activate ]] && source .venv/bin/activate
+  command just "$@"
+}
 
 
 # Convenience aliases for rc files
