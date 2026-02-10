@@ -59,13 +59,33 @@ end
 
 -- Run stuff
 keymap.set("n", "<leader>re", ":source ~/.vimrc<cr>", { desc = "Reload vimrc" })
-keymap.set("n", "<leader>rt", ":make test<cr>", { desc = "Run tests" })
+keymap.set("n", "<leader>rt", function()
+	if vim.bo.filetype == "python" then
+		local neotest = require("neotest")
+		neotest.run.run(vim.fn.getcwd() .. "/tests")
+		neotest.summary.open()
+	else
+		vim.cmd("make test")
+	end
+end, { desc = "Run tests" })
 keymap.set("n", "<leader>rn", function() require("neotest").run.run() end, { desc = "Run nearest test" })
 keymap.set("n", "<leader>rd", function() require("neotest").run.run({strategy = "dap"}) end, { desc = "Debug nearest test" })
 keymap.set("n", "<leader>rf", function() require("neotest").run.run(vim.fn.expand("%")) end, { desc = "Run file tests" })
 keymap.set("n", "<leader>ro", function()
 	require("neotest").output_panel.toggle()
 end, { desc = "Toggle test output panel" })
+keymap.set("n", "<leader>rO", function()
+	require("neotest").output.open({ enter = false })
+end, { desc = "Show test output popup" })
+
+keymap.set("n", "<leader>yi", function()
+	local path = vim.fn.expand("%:p") -- full path
+	local cwd = vim.fn.getcwd()
+	local rel = path:gsub("^" .. vim.pesc(cwd) .. "/", "") -- relative to cwd
+	local import = rel:gsub("%.py$", ""):gsub("/", ".") -- convert to import
+	vim.fn.setreg("+", "from " .. import .. " import ")
+	print("Copied: from " .. import .. " import ")
+end, { desc = "Copy file path as Python import" })
 keymap.set("n", "<leader>ypt", function()
 	if vim.bo.filetype ~= "python" then
 		print("This only works for Python files")
@@ -162,18 +182,9 @@ end, { desc = "Reset windows and equalize" })
 -- keymap.set("n", "<localleader>oo", "o<Esc>0\"_D", {desc = "New line below in normal mode"})
 -- keymap.set("n", "<localleader>O", "O<Esc>0\"_D", {desc = "New line above in normal mode"})
 
-keymap.set(
-	"n",
-	"s",
-	':exec "normal i".nr2char(getchar())."\\e"<CR>',
-	{ desc = "Insert one character then go back to normal mode" }
-)
-keymap.set(
-	"n",
-	"S",
-	':exec "normal a".nr2char(getchar())."\\e"<CR>',
-	{ desc = "Append one character then go back to normal mode" }
-)
+-- s is now used as prefix for treesitter navigation (sa/so/se/su)
+-- S remains available - restore substitute line behavior
+keymap.set("n", "S", "cc", { desc = "Substitute line" })
 keymap.set("n", "<localleader>if", "i<C-r>=expand('%:t:r')<cr><Esc>", { desc = "Insert current file name" })
 keymap.set("n", "<localleader>ii", "i# <C-r>=expand('%:t:r')<cr><cr><cr>", { desc = "Insert vimwiki header" })
 keymap.set("n", "<localleader>il", ":VimwikiGenerateLinks ", { desc = "Generate links to files based on pattern" })
