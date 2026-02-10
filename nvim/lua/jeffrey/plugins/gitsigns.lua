@@ -19,8 +19,21 @@ return {
     keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", { desc = "Prev hunk" })
 
     -- Merge conflict resolution (use in mergetool's diff view)
-    keymap.set("n", "<leader>ml", "<cmd>diffget LO<cr>", { desc = "Get from LOCAL (ours)" })
-    keymap.set("n", "<leader>mr", "<cmd>diffget RE<cr>", { desc = "Get from REMOTE (theirs)" })
-    keymap.set("n", "<leader>mb", "<cmd>diffget BA<cr>", { desc = "Get from BASE" })
+    keymap.set("n", "<leader>ml", "<cmd>diffget LOCAL<cr>", { desc = "Get from LOCAL (ours)" })
+    keymap.set("n", "<leader>mr", "<cmd>diffget REMOTE<cr>", { desc = "Get from REMOTE (theirs)" })
+    keymap.set("n", "<leader>mb", "<cmd>diffget BASE<cr>", { desc = "Get from BASE" })
+    keymap.set("n", "<leader>mL", "<cmd>%diffget LOCAL<cr>", { desc = "Take all from LOCAL (ours)" })
+    keymap.set("n", "<leader>mR", "<cmd>%diffget REMOTE<cr>", { desc = "Take all from REMOTE (theirs)" })
+
+    -- When opening as mergetool, move cursor to MERGED (middle) pane and jump to first conflict
+    vim.api.nvim_create_autocmd("VimEnter", {
+      group = vim.api.nvim_create_augroup("MergetoolCursor", { clear = true }),
+      callback = function()
+        if vim.wo.diff and vim.fn.winnr("$") == 3 then
+          vim.cmd("2wincmd w")
+          vim.fn.search("^<<<<<<<", "cw")
+        end
+      end,
+    })
   end,
 }
