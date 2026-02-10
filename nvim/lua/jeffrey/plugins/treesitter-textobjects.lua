@@ -15,21 +15,21 @@ return {
 
     local keymap = vim.keymap
 
-    -- Jump to next/prev function
-    keymap.set({ "n", "x", "o" }, ";f", function()
-      require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer")
-    end, { desc = "Next function" })
-    keymap.set({ "n", "x", "o" }, ";F", function()
+    -- Jump to next/prev function (Dvorak: a=prev, o=next)
+    keymap.set({ "n", "x", "o" }, "sa", function()
       require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer")
     end, { desc = "Previous function" })
+    keymap.set({ "n", "x", "o" }, "so", function()
+      require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer")
+    end, { desc = "Next function" })
 
-    -- Jump to next/prev class
-    keymap.set({ "n", "x", "o" }, ";c", function()
-      require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer")
-    end, { desc = "Next class" })
-    keymap.set({ "n", "x", "o" }, ";C", function()
+    -- Jump to next/prev class (Dvorak: e=prev, u=next)
+    keymap.set({ "n", "x", "o" }, "se", function()
       require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer")
     end, { desc = "Previous class" })
+    keymap.set({ "n", "x", "o" }, "su", function()
+      require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer")
+    end, { desc = "Next class" })
 
     -- Text objects: af/if = around/inside function, ac/ic = around/inside class
     keymap.set({ "x", "o" }, "af", function()
