@@ -31,16 +31,18 @@ function gvwcp() {
 function cpr() {
   pr="$1"
   remote="${2:-origin}"
+  source_dir="$(pwd)"
   branch=$(gh pr view "$pr" --json headRefName -q .headRefName)
   git fetch "$remote" "$branch"
   git worktree add "../$branch" "$branch"
-#
+
   # Copy key files to new worktree
-  for f in .env .env.local; do
+  for f in .env .env.local .envrc; do
     [[ -f "$source_dir/$f" ]] && cp "$source_dir/$f" "../$branch/$f"
   done
 
   cd "../$branch" || return
+  [[ -f .envrc ]] && direnv allow
   echo "Switched to new worktree for PR #$pr: $branch"
 }
 
@@ -53,7 +55,21 @@ function dpr() {
     return 1
   fi
 
-  cd "$main_worktree" || return
-  git worktree remove "$current"
+  if [[ -n $(git status --porcelain) ]]; then
+    echo "Uncommitted changes:"
+    git status --short
+    echo
+    if read -q "choice?Force delete worktree? (Y/n): "; then
+      echo
+      cd "$main_worktree" || return
+      git worktree remove --force "$current"
+    else
+      echo "\nAborting."
+      return 1
+    fi
+  else
+    cd "$main_worktree" || return
+    git worktree remove "$current"
+  fi
   echo "Removed worktree and returned to $main_worktree"
 }
