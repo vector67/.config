@@ -57,7 +57,11 @@ return {
 						autoSearchPaths = true,
 						useLibraryCodeForTypes = true,
 						typeCheckingMode = "basic",
+						autoImportCompletions = true,
 					},
+				},
+				pyright = {
+					disableOrganizeImports = true, -- let ruff handle this
 				},
 			},
 		}
