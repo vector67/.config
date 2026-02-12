@@ -43,7 +43,51 @@ function cpr() {
 
   cd "../$branch" || return
   [[ -f .envrc ]] && direnv allow
+
+  # Warm up just preconditions in background
+  if [[ -f justfile || -f Justfile ]]; then
+    just prec &>/dev/null & disown
+    echo "Background: just prec warming up"
+  fi
+
   echo "Switched to new worktree for PR #$pr: $branch"
+}
+
+function cwt() {
+  local source_dir="$(pwd)"
+  local current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+  if [[ -z "$current_branch" ]]; then
+    echo "Not on a branch (detached HEAD)"
+    return 1
+  fi
+
+  local name="${1:-}"
+  if [[ -z "$name" ]]; then
+    local i=1
+    while [[ -d "../${current_branch}-${i}" ]]; do
+      ((i++))
+    done
+    name="${current_branch}-${i}"
+  fi
+
+  git worktree add -b "$name" "../$name" HEAD || return 1
+
+  # Copy key files to new worktree
+  for f in .env .env.local .envrc; do
+    [[ -f "$source_dir/$f" ]] && cp "$source_dir/$f" "../$name/$f"
+  done
+
+  cd "../$name" || return
+  [[ -f .envrc ]] && direnv allow
+
+  # Warm up just preconditions in background
+  if [[ -f justfile || -f Justfile ]]; then
+    just prec &>/dev/null & disown
+    echo "Background: just prec warming up"
+  fi
+
+  echo "Created worktree clone: $name (from $current_branch)"
 }
 
 function dpr() {
