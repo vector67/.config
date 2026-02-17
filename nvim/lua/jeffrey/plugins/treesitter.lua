@@ -49,8 +49,6 @@ return {
 		end
 
 		local install_dir = vim.fn.stdpath("data") .. "/site"
-		vim.notify("Installing parsers to: " .. install_dir)
-
 		nvim_treesitter.setup({
 			install_dir = install_dir,
 		})

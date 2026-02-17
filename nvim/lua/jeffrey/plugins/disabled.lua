@@ -9,7 +9,7 @@ return {
  -- { "williamboman/mason-lspconfig.nvim", enabled = false },
  -- { "neovim/nvim-lspconfig", enabled = false },
 --  { "stevearc/dressing.nvim", enabled = false },
---  { "lukas-reineke/indent-blankline.nvim", enabled = false },
+    { "lukas-reineke/indent-blankline.nvim", enabled = false },
 --  { "nvim-lualine/lualine.nvim", enabled = false },
 --  { "hrsh7th/nvim-cmp", enabled = false },
 --  { "nvim-tree/nvim-tree.lua", enabled = false },
