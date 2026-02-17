@@ -1262,6 +1262,8 @@
 			<string>MesloLGSNFM-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
+			<key>Place Prompt at First Column</key>
+			<false/>
 			<key>Prompt Before Closing 2</key>
 			<false/>
 			<key>Right Option Key Sends</key>
@@ -1342,6 +1344,10 @@
 			<false/>
 			<key>Shortcut</key>
 			<string></string>
+			<key>Show Mark Indicators</key>
+			<false/>
+			<key>Show Offscreen Command line</key>
+			<false/>
 			<key>Show Status Bar</key>
 			<false/>
 			<key>Silence Bell</key>
@@ -3576,6 +3582,10 @@
 	<integer>1</integer>
 	<key>TabsHaveCloseButton</key>
 	<false/>
+	<key>TerminalMargin</key>
+	<integer>35</integer>
+	<key>TerminalVMargin</key>
+	<integer>15</integer>
 	<key>ToolbeltTools</key>
 	<array>
 		<string>Recent Directories</string>
