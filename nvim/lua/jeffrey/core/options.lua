@@ -24,7 +24,7 @@ opt.clipboard:append("unnamedplus")
 
 opt.splitright = true
 opt.splitbelow = true
-opt.showtabline = 0 -- never show tab line
+-- tabline visibility managed by bufferline (always_show_bufferline = false)
 
 opt.autowrite = true
 
@@ -45,6 +45,27 @@ acmd({ "BufLeave", "FocusLost" }, {
 	pattern = "*",
 	command = ":wall",
 	group = _general,
+})
+
+-- Detect external file changes when switching back to Neovim
+acmd({ "FocusGained", "BufEnter" }, {
+	pattern = "*",
+	command = "checktime",
+	group = agrp("_checktime", { clear = true }),
+})
+
+-- Refresh LSP after external file changes (git, AI agents, etc.)
+acmd("FileChangedShellPost", {
+	group = agrp("_lsp_refresh", { clear = true }),
+	callback = function(args)
+		vim.schedule(function()
+			local clients = vim.lsp.get_clients({ bufnr = args.buf })
+			for _, client in ipairs(clients) do
+				vim.lsp.buf_detach_client(args.buf, client.id)
+				vim.lsp.buf_attach_client(args.buf, client.id)
+			end
+		end)
+	end,
 })
 
 -- autosession config
