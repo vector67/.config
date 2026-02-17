@@ -172,7 +172,7 @@ source $ZDOTDIR/cursor_mode.zsh
 source $ZDOTDIR/git_aliases.zsh
 
 # Brew help
-alias br='brew update && brew upgrade && brew doctor && brew cleanup'
+alias br='brew update; brew upgrade; brew doctor; brew cleanup'
 # Python stuff
 alias pv='source .venv/bin/activate'
 alias createVenv='python3 -m venv venv'
@@ -185,6 +185,7 @@ function just() {
 
 # Convenience aliases for rc files
 alias reload='source ~/.config/zsh/.zshrc'
+alias catchup='morning > /tmp/morning-catchup.md && claude -p "$(cat ~/.config/bin/morning-prompt.md)" < /tmp/morning-catchup.md'
 alias editconfig='nvim ~/.config/'
 alias editrc='nvim ~/.config/zsh/.zshrc'
 alias editvimrc='nvim ~/.vimrc'

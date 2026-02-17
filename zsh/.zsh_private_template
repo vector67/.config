@@ -1,2 +1,6 @@
 alias setDNS='curl https://freemyip.com/update?token=<insert_token>&domain=<domain>'
 alias homeServer='ssh -p <port> <username>@<domain>'
+
+# API tokens and credentials are stored in zsh/.secrets/tokens
+# (not loaded into every shell — sourced on-demand by scripts that need them)
+# See zsh/.secrets/tokens.template
