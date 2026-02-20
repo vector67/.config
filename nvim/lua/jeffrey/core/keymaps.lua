@@ -158,6 +158,11 @@ keymap.set(
 	{ desc = "Enable textwidth wrapping and wrap current paragraph" }
 )
 
+keymap.set("n", "<leader>yf", function()
+	local path = vim.fn.expand("%:t") .. ":" .. vim.fn.line(".")
+	vim.fn.setreg("+", path)
+	vim.notify("Copied: " .. path)
+end, { desc = "Copy filename:line to clipboard" })
 keymap.set("n", "<leader>ya", ":%y<cr>", { desc = "Yank entire file" })
 
 -- Buffers
