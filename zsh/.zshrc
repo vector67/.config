@@ -185,7 +185,7 @@ function just() {
 
 # Convenience aliases for rc files
 alias reload='source ~/.config/zsh/.zshrc'
-alias catchup='morning > /tmp/morning-catchup.md && claude -p "$(cat ~/.config/bin/morning-prompt.md)" < /tmp/morning-catchup.md'
+alias catchup='morning'
 alias editconfig='nvim ~/.config/'
 alias editrc='nvim ~/.config/zsh/.zshrc'
 alias editvimrc='nvim ~/.vimrc'

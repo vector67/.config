@@ -49,3 +49,9 @@ zsh/.zsh_private
 zsh/.secrets/
 zsh/.zsh_sessions/
 
+bin/calendar-today.swift
+bin/mail-fetch.app/
+bin/mail-triage
+bin/mail-triage-prompt.md
+bin/morning
+bin/morning-prompt.md

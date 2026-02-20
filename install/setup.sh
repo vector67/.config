@@ -120,6 +120,10 @@ git config --global init.defaultBranch main
 cd ~
 git clone git@github.com:vector67/vimwiki.git
 
+mkdir -p ~/repositories
+git clone git@github.com:vector67/morning.git ~/repositories/morning
+cd ~/repositories/morning && make install
+
 
 ## SSH
 # in case the folder is not there yet
