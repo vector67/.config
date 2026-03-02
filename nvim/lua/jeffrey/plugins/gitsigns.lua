@@ -14,7 +14,7 @@ return {
     keymap.set("n", "<leader>gB", "<cmd>Gitsigns blame<cr>", { desc = "Blame file" })
     keymap.set("n", "<leader>gt", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle line blame" })
     keymap.set("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", { desc = "Preview hunk" })
-    keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Reset hunk" })
+    keymap.set("n", "<leader>gx", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Reset hunk" })
     keymap.set("n", "]h", "<cmd>Gitsigns next_hunk<cr>", { desc = "Next hunk" })
     keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", { desc = "Prev hunk" })
 

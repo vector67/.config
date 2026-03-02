@@ -198,8 +198,8 @@ keymap.set("n", "<c-l>", "i<C-r>=strftime('%Y-%m-%d')<cr><Esc>", { desc = "Inser
 keymap.set("i", "<c-l>", "<C-r>=strftime('%Y-%m-%d')<cr>", { desc = "Insert current date" })
 
 -- iterm2 puts a strange character in when you hit shift escape and that's what this keymap is here for
-keymap.set("t", "", "<C-\\><C-n><C-w>w")
-keymap.set("t", "<S-Esc>", "<C-\\><C-n><C-w>w")
+keymap.set("t", "", "<C-\\><C-n>")
+keymap.set("t", "<S-Esc>", "<C-\\><C-n>")
 keymap.set("n", "", "<C-w>w")
 keymap.set("n", "<S-Esc>", "<C-w>w")
 
@@ -274,3 +274,37 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 keymap.set("v", "<C-r>", "hy:%s/<C-r>h//gc<left><left><left>", { desc = "Replace" })
 
 keymap.set("o", "iz", ":<c-u>normal! [zV]z<cr>")
+
+-- Go to file:line under cursor (e.g. from terminal output). Opens in nearest
+-- non-terminal window, or a new vsplit if none exists.
+keymap.set("n", "gF", function()
+	local word = vim.fn.expand("<cWORD>")
+	-- strip common surrounding punctuation
+	word = word:gsub("^[%(%)%[%],;'\"]+", ""):gsub("[%(%)%[%],;'\"]+$", "")
+	local file, line = word:match("^([^:]+):(%d+)")
+	if not file then
+		file = word
+	end
+
+	local cur_win = vim.api.nvim_get_current_win()
+	local target_win = nil
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		if vim.bo[buf].buftype ~= "terminal" and win ~= cur_win then
+			target_win = win
+			break
+		end
+	end
+
+	if target_win then
+		vim.api.nvim_set_current_win(target_win)
+	else
+		vim.cmd("vsplit")
+	end
+
+	vim.cmd("edit " .. vim.fn.fnameescape(file))
+	if line then
+		vim.api.nvim_win_set_cursor(0, { tonumber(line), 0 })
+		vim.cmd("normal! zz")
+	end
+end, { desc = "Go to file:line under cursor" })
