@@ -304,3 +304,4 @@ autoload -Uz compinit
 compinit
 # End of Docker CLI completions
 eval "$(direnv hook zsh)"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
