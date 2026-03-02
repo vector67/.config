@@ -24,18 +24,8 @@ return {
 			},
 		})
 
-		local function get_python_path()
-			local venv = vim.fn.getcwd() .. "/.venv/bin/python"
-			if vim.fn.filereadable(venv) == 1 then
-				return venv
-			else
-				venv = vim.fn.getcwd() .. "/venv/bin/python"
-				if vim.fn.filereadable(venv) == 1 then
-					return venv
-				end
-			end
-			return "python" -- fallback
-		end
+		local python = require("jeffrey.core.python")
+		local get_python_path = python.get_python_path
 
 		-- Register the Pyright server using the new vim.lsp.configs API
 		vim.lsp.config["pyright"] = {
@@ -71,6 +61,33 @@ return {
 
 		local keymap = vim.keymap -- for conciseness
 
+		local function goto_def_in_split(direction, split_cmd)
+			local params = vim.lsp.util.make_position_params()
+			local results = vim.lsp.buf_request_sync(0, "textDocument/definition", params, 1000)
+			if not results then
+				return
+			end
+
+			local result
+			for _, res in pairs(results) do
+				if res.result and not vim.tbl_isempty(res.result) then
+					result = vim.tbl_islist(res.result) and res.result[1] or res.result
+					break
+				end
+			end
+			if not result then
+				return
+			end
+
+			if vim.fn.winnr(direction) ~= vim.fn.winnr() then
+				vim.cmd("wincmd " .. direction)
+			else
+				vim.cmd(split_cmd)
+			end
+
+			vim.lsp.util.jump_to_location(result, "utf-8")
+		end
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
@@ -87,6 +104,15 @@ return {
 
 				opts.desc = "Show LSP definitions"
 				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+
+				opts.desc = "Go to definition"
+				keymap.set("n", "<leader>gc", "<cmd>Telescope lsp_definitions<CR>", opts)
+
+				opts.desc = "Go to definition in vertical split"
+				keymap.set("n", "<leader>gr", function() goto_def_in_split("l", "vsplit") end, opts)
+
+				opts.desc = "Go to definition in horizontal split"
+				keymap.set("n", "<leader>gl", function() goto_def_in_split("j", "split") end, opts)
 
 				opts.desc = "Show LSP implementations"
 				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
@@ -126,8 +152,7 @@ return {
 				-- adjust this name if you use a different python language server
 				if client.name == "pyright" or client.name == "pylsp" or client.name == "python-ls" then
 					local bufnr = ev.buf
-					local setup_pytest_for_buf = require("jeffrey.core.python")
-					setup_pytest_for_buf(bufnr)
+					python.setup_pytest_for_buf(bufnr)
 				end
 			end,
 		})

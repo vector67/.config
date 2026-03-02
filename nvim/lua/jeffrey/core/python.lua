@@ -1,3 +1,16 @@
+local function get_python_path()
+	local venv = vim.fn.getcwd() .. "/.venv/bin/python"
+	if vim.fn.filereadable(venv) == 1 then
+		return venv
+	else
+		venv = vim.fn.getcwd() .. "/venv/bin/python"
+		if vim.fn.filereadable(venv) == 1 then
+			return venv
+		end
+	end
+	return "python"
+end
+
 local function setup_pytest_for_buf(bufnr)
 	-- Create a buffer-local :CompilerSet command that runs `setlocal <args>`
 	vim.api.nvim_buf_create_user_command(bufnr, "CompilerSet", function(opts)
@@ -64,4 +77,7 @@ local function setup_pytest_for_buf(bufnr)
 	})
 end
 
-return setup_pytest_for_buf
+return {
+	get_python_path = get_python_path,
+	setup_pytest_for_buf = setup_pytest_for_buf,
+}
