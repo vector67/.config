@@ -4,16 +4,30 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            -- Detect macOS system appearance
-            local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
-            local result = handle:read("*a")
-            handle:close()
-            vim.o.background = result:match("Dark") and "dark" or "light"
+            local function detect_appearance()
+                local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
+                local result = handle:read("*a")
+                handle:close()
+                return result:match("Dark") and "dark" or "light"
+            end
+
+            vim.o.background = detect_appearance()
 
             -- Enable filetype-specific highlighting
             vim.g.solarized_extra_hi_groups = 1
 
             vim.cmd("colorscheme solarized8")
+
+            -- Poll for system appearance changes
+            local timer = vim.uv.new_timer()
+            timer:start(0, 5000, vim.schedule_wrap(function()
+                local new_bg = detect_appearance()
+                if new_bg ~= vim.o.background then
+                    vim.o.background = new_bg
+                    local lualine_theme = new_bg == "dark" and "solarized_dark" or "solarized_light"
+                    require("lualine").setup({ options = { theme = lualine_theme } })
+                end
+            end))
         end,
     },
     {
