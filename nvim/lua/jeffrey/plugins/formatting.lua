@@ -11,7 +11,19 @@ return {
 				or vim.fn.filereadable(root .. "/pyproject.toml") == 1
 		end
 
+		-- Use project-local ruff (via uv) instead of Mason's global install,
+		-- so formatting matches what pre-commit hooks run.
 		conform.setup({
+			formatters = {
+				ruff_fix = {
+					command = "uv",
+					prepend_args = { "run", "--frozen", "ruff" },
+				},
+				ruff_format = {
+					command = "uv",
+					prepend_args = { "run", "--frozen", "ruff" },
+				},
+			},
 			formatters_by_ft = {
 				javascript = { "prettier" },
 				typescript = { "prettier" },
@@ -26,7 +38,7 @@ return {
 				graphql = { "prettier" },
 				liquid = { "prettier" },
 				lua = { "stylua" },
-				python = { "ruff_format" },
+				python = { "ruff_fix", "ruff_format" },
 			},
 			format_on_save = function(bufnr)
 				local bufname = vim.api.nvim_buf_get_name(bufnr)

@@ -28,7 +28,7 @@ opt.splitbelow = true
 
 opt.autowrite = true
 
-opt.foldcolumn = "1" -- show foldcolumn
+opt.foldcolumn = "0"
 opt.foldenable = true -- enable fold for nvim-ufo
 opt.foldlevel = 99 -- set high foldlevel for nvim-ufo
 opt.foldlevelstart = 99 -- start with all code unfolded
