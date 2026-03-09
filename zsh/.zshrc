@@ -170,6 +170,7 @@ export KEYTIMEOUT=1
 
 source $ZDOTDIR/cursor_mode.zsh
 source $ZDOTDIR/git_aliases.zsh
+source $ZDOTDIR/tmux_window_title.zsh
 
 # Brew help
 alias br='brew update; brew upgrade; brew doctor; brew cleanup'
