@@ -193,6 +193,9 @@ alias editvimrc='nvim ~/.vimrc'
 alias nvimconfig='nvim ~/.config/nvim'
 alias sync='cd ~/.config && gpra && cd ~/vimwiki && gpra && cd ~'
 
+# makewithlove droplet
+alias mwl='ssh mwl'
+
 # Masters aliases
 alias chpc='pass show -c lengau.chpc.ac.za; ssh jrussell@lengau.chpc.ac.za'
 alias masters='nvim  ~/repositories/masters-2021-paper/'
