@@ -16,6 +16,10 @@ This is a personal dotfiles repository for macOS, containing configuration files
 - **karabiner/**: Keyboard remapping configuration (includes Dvorak layout)
 - **cron/**: Cron jobs (auto-saves tmux sessions every minute)
 
+## Related Repositories
+
+- **Morning briefing script**: `~/repositories/morning/` — gathers calendar, GitHub, email, Jira, and vimwiki data into a daily briefing. Claude is always allowed to read and modify files in this repository from the dotfiles project.
+
 ## Setup Commands
 
 Initial machine setup:
