@@ -29,11 +29,14 @@ local/share/uv/
 local/share/nvim/.netrwhist
 local/share/nvim/telescope_history
 local/share/direnv
+local/share/morning/
 
 local/bin/idea
+local/bin/lefthook
 local/bin/rubymine
 local/bin/pycharm
 local/bin/python*
+local/bin/tox
 
 StardewValley/**
 
