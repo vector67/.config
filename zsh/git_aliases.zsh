@@ -28,6 +28,27 @@ function gvwcp() {
   fi
 }
 
+_worktree_warmup() {
+  local has_uv=false has_just=false
+  if command -v uv &>/dev/null && [[ -f pyproject.toml ]]; then
+    has_uv=true
+  fi
+  if [[ -f justfile || -f Justfile ]]; then
+    has_just=true
+  fi
+
+  if $has_uv && $has_just; then
+    (uv sync && just prec) &>/dev/null & disown
+    echo "Background: uv sync + just prec warming up"
+  elif $has_uv; then
+    uv sync &>/dev/null & disown
+    echo "Background: uv sync running"
+  elif $has_just; then
+    just prec &>/dev/null & disown
+    echo "Background: just prec warming up"
+  fi
+}
+
 function cpr() {
   pr="$1"
   remote="${2:-origin}"
@@ -44,11 +65,7 @@ function cpr() {
   cd "../$branch" || return
   [[ -f .envrc ]] && direnv allow
 
-  # Warm up just preconditions in background
-  if [[ -f justfile || -f Justfile ]]; then
-    just prec &>/dev/null & disown
-    echo "Background: just prec warming up"
-  fi
+  _worktree_warmup
 
   echo "Switched to new worktree for PR #$pr: $branch"
 }
@@ -81,11 +98,7 @@ function cwt() {
   cd "../$name" || return
   [[ -f .envrc ]] && direnv allow
 
-  # Warm up just preconditions in background
-  if [[ -f justfile || -f Justfile ]]; then
-    just prec &>/dev/null & disown
-    echo "Background: just prec warming up"
-  fi
+  _worktree_warmup
 
   echo "Created worktree clone: $name (from $current_branch)"
 }
